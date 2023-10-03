@@ -47,7 +47,7 @@ export default function ProMenuSuperior() {
       <FormGroup>
       </FormGroup>
       <AppBar position="static">
-        <Toolbar sx={{backgroundColor:"#ad1457",}}>
+        <Toolbar sx={{background: "linear-gradient(90deg, rgba(154,0,255,1) 0%, rgba(227,0,39,1) 48%, rgba(249,137,0,1) 100%);" }}>
           <IconButton
             size="large"
             edge="start"

@@ -26,7 +26,6 @@ export default function Formulario() {
       email: data.get("email"),
       password: data.get("password"),
       cpf: data.get("cpf"),
-      datanascimento: data.get("datanascimento"),
       servico: data.get("servico"),
       telefone: data.get("telefone"),
       uf: data.get("uf"),
@@ -93,16 +92,6 @@ export default function Formulario() {
                 <TextField
                   required
                   fullWidth
-                  id="datanascimento"
-                  label="DATA NASCIMENTO"
-                  name="datanascimento"
-                  autoComplete="datanascimento"
-                />
-              </Grid>
-              <Grid item xs={1} sm={6}>
-                <TextField
-                  required
-                  fullWidth
                   id="telefone"
                   label="TELEFONE"
                   name="telefone"
@@ -130,8 +119,6 @@ export default function Formulario() {
                   autoComplete="cidade"
                 />
               </Grid>
-            
-
               <Grid item xs={13} alignContent={"center"} >
           <Typography variant="h6" textAlign={"center"}> Serviço Prestado                 
           </Typography>

@@ -15,14 +15,15 @@ export default function Rodape() {
     <ThemeProvider theme={defaultTheme}>
       <Box
         sx={{
+          background: "linear-gradient(90deg, rgba(154,0,255,1) 0%, rgba(227,0,39,1) 48%, rgba(249,137,0,1) 100%);" ,
           display: "flex",
           flexDirection: "column",
           minHeight: "50vh",
         }}
       >
         <CssBaseline />
-        <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
-          <Typography variant="h2" component="h1" gutterBottom>
+        <Container component="main" sx={{ mt: 8, mb:2, color: "white" }} maxWidth="sm" >
+          <Typography variant="h2" component="h1" gutterBottom >
             ALLBEAUTY
           </Typography>
           <Typography variant="h5" component="h2" gutterBottom>
