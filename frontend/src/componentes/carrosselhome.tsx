@@ -1,17 +1,10 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import primeiraimagem from "../img/primeiraimagem.png";
-import imgcarrossel4 from "../img/manicure1.jpg";
-import Rodape from "../componentes/rodape";
 import introducao from "../img/introducao.png";
-import { Route, useNavigate, Navigate } from "react-router-dom";
-import Menusuperior from "../componentes/menusuperior";
 import axios from "axios";
 import terceiraimg from "../img/terceiraimg.png";
 import { Grid } from "@mui/material";
@@ -39,6 +32,7 @@ export default function Carrossel() {
     setActiveStep(step);
   };
 return(
+  <div style={{ maxWidth: "100%", overflow:  "hidden"}}>
   <AutoPlaySwipeableViews
     axis={theme.direction === "rtl" ? "x-reverse" : "x"}
     index={activeStep}
@@ -46,18 +40,15 @@ return(
     enableMouseEvents
   >
     {images.map((step, index) => (
-      <div>
+      <div key={index}>
         {Math.abs(activeStep - index) <= 2 ? (
           <Box
             component="img"
             sx={{
-              height: 350,
               display: "block",
-              maxWidth: 1350,
-              overflow: "hidden",
+              maxWidth: "100%",
               width: "100%",
-              margin: 10,
-              alignItems: "center",
+              margin: "0 auto",
             }}
             src={step.imgPath}
           />
@@ -65,5 +56,6 @@ return(
       </div>
     ))}
   </AutoPlaySwipeableViews>
-)
+  </div>
+);
 }
