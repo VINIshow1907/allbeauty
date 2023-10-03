@@ -16,8 +16,13 @@ export default function MenuSuperior() {
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ 
-        background: "linear-gradient(90deg, rgba(154,0,255,1) 0%, rgba(227,0,39,1) 48%, rgba(249,137,0,1) 100%);" }}>
+      <AppBar
+        position="static"
+        sx={{
+          background:
+            "linear-gradient(90deg, rgba(154,0,255,1) 0%, rgba(227,0,39,1) 48%, rgba(249,137,0,1) 100%);",
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
