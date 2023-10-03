@@ -14,89 +14,23 @@ import { Route, useNavigate, Navigate } from "react-router-dom";
 import Menusuperior from "../componentes/menusuperior";
 import axios from "axios";
 import terceiraimg from"../img/terceiraimg.png";
+import { Grid } from "@mui/material";
+import Carrossel from "../componentes/carrosselhome";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-const images = [
-  {
-    label: "MAQUIAGEM",
-    imgPath: introducao,
-  },
-  {
-    label: "CABELO",
-    imgPath: primeiraimagem,
-  },
-  {
-    label: "PEDICURE",
-    imgPath: terceiraimg,
-  },
-  {
-    label: "MANICURE",
-    imgPath: imgcarrossel4,
-  },
-];
 
 export default function Home() {
   const navigate = useNavigate();
 
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
-
-  const handleStepChange = (step: number) => {
-    setActiveStep(step);
-  };
 
   const paginaCadastro = () => {
     navigate("/Cadastro");
   
   };
-  const MenuSuperior = () => {
-    navigate("/MenuSuperior");
-    }  
+    
     return (
     <Box sx={{ maxWidth: 10000, flexGrow: 100,minHeight:250 ,textAlign: "center" }}>
       <Menusuperior />
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          height: 50,
-          pl: 5,
-          bgcolor: "",
-        }}
-      >
-        <Typography>{images[activeStep].label}</Typography>
-      </Paper>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {images.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                sx={{
-                  height: 350,
-                  display: "block",
-                  maxWidth: 1350,
-                  overflow: "hidden",
-                  width: "100%",
-                  margin: 10,
-                  alignItems: "center",
-                }}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-
+      <Carrossel/>    
       <Button
         onClick={paginaCadastro}
         type="submit"
@@ -112,7 +46,12 @@ export default function Home() {
       >
         CADASTRE-SE
       </Button>
+      <Grid sx={{
+        textAlign: "left",
+      }}>
       <h1>Selecione o seu estado, a sua cidade e o serviço que procura para encontrar os profissionais que melhor atendem às suas necessidades.</h1>
+      </Grid>
+    
    <Rodape />
     </Box>
   );
