@@ -7,10 +7,13 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Route, Link, useNavigate } from "react-router-dom";
+import Cadastro from "../paginas/cadastro";
 
 export default function MenuSuperior() {
   const navigate = useNavigate();
-
+  const paginaCadastro = () => {
+    navigate("/cadastro");
+  };
   const paginaLogin = () => {
     navigate("/login");
   };
@@ -36,6 +39,10 @@ export default function MenuSuperior() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             AllBeauty
           </Typography>
+          <Button color="inherit" onClick={paginaCadastro}>
+            Cadastre-se
+          </Button>
+
           <Button color="inherit" onClick={paginaLogin}>
             Login
           </Button>
