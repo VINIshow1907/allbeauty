@@ -16,42 +16,28 @@ import axios from "axios";
 import terceiraimg from"../img/terceiraimg.png";
 import { Grid } from "@mui/material";
 import Carrossel from "../componentes/carrosselhome";
+import "../estilos/fonte.css"; // Importe o arquivo CSS de estilos
 
 
 export default function Home() {
   const navigate = useNavigate();
 
-
   const paginaCadastro = () => {
     navigate("/Cadastro");
-  
   };
     
     return (
     <Box sx={{ maxWidth: 10000, flexGrow: 100,minHeight:250 ,textAlign: "center" }}>
       <Menusuperior />
       <Carrossel/>    
-      <Button
-        onClick={paginaCadastro}
-        type="submit"
-        variant="contained"
-        sx={{ 
-          mt: -12,
-           mb: 1,
-            bgcolor: "#ad1457",
-             '&:hover': {
-              bgcolor: "#ec407a",
-            },
-           }}
-      >
-        CADASTRE-SE
-      </Button>
+      
       <Grid sx={{
-        textAlign: "left",
+        textAlign: "center",
       }}>
-      <h1>Selecione o seu estado, a sua cidade e o serviço que procura para encontrar os profissionais que melhor atendem às suas necessidades.</h1>
+        <h1>Agora, você cliente, poderá escolher o profissional que mais o agrada com base na cidade em que você está e no serviço que você precisa.</h1>
+        <h3 className="century-font">Selecione o seu estado, a sua cidade e o serviço que procura para 
+        encontrar os profissionais que melhor atendem às suas necessidades.</h3>
       </Grid>
-    
    <Rodape />
     </Box>
   );

@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Route, Link, useNavigate } from "react-router-dom";
 import Cadastro from "../paginas/cadastro";
 
+
 export default function MenuSuperior() {
   const navigate = useNavigate();
   const paginaCadastro = () => {
@@ -39,11 +40,11 @@ export default function MenuSuperior() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             AllBeauty
           </Typography>
-          <Button color="inherit" onClick={paginaCadastro}>
+          <Button color="inherit" onClick={paginaCadastro} >
             Cadastre-se
           </Button>
 
-          <Button color="inherit" onClick={paginaLogin}>
+          <Button color="inherit" onClick={paginaLogin} >
             Login
           </Button>
         </Toolbar>
