@@ -43,7 +43,7 @@ export default function Formulario() {
         <CssBaseline />
         <Box
           sx={{
-            width: 425,
+            width: "100%",
             bgcolor: "white",
             marginTop: 8,
             display: "flex",
@@ -76,7 +76,6 @@ export default function Formulario() {
                 />
                 </Grid>
               <br></br>
-              
               <Grid item xs={12} sm={6}>
                 <TextField  
                   required
@@ -88,7 +87,7 @@ export default function Formulario() {
                 />
               </Grid>
               <br></br>
-              <Grid item xs={1} sm={6}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -98,7 +97,8 @@ export default function Formulario() {
                   autoComplete="telefone"
                 />
               </Grid>
-              <Grid item xs={1} sm={6} >
+
+              <Grid item xs={12} sm={6} >
                 <TextField 
                   
                   required
@@ -109,7 +109,7 @@ export default function Formulario() {
                   autoComplete="uf"
                 />
               </Grid>
-              <Grid item xs={1} sm={6}>
+              <Grid item xs={12} >
                 <TextField
                   required
                   fullWidth
@@ -119,33 +119,6 @@ export default function Formulario() {
                   autoComplete="cidade"
                 />
               </Grid>
-              <Grid item xs={13} alignContent={"center"} >
-          <Typography variant="h6" textAlign={"center"}> Serviço Prestado                 
-          </Typography>
-            <br></br>
-            <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Manicure"
-              />
-            <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Pedicure"
-              />
-            <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Cabeleleiro"
-              />
-              <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Maquiador"
-              />
-              <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Design Sobrancelha"
-              />
-      
-             </Grid>
-            
               
             <Grid item xs={12}>
               <TextField
@@ -169,13 +142,58 @@ export default function Formulario() {
                 autoComplete="nova senha"
               />
             </Grid>
-            <Grid item xs={12}></Grid>
-</Grid>
+              <Grid item xs={12} >
+          <Typography variant="h6" textAlign={"center"}>
+             Serviço Prestado                 
+          </Typography>
+          </Grid>
+            <br></br>
+            <Grid item xs={6} sm={4} md={4}>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Manicure"
+              />
+            </Grid>
+            <Grid item xs={6} sm={4} md={4}>
+            <FormControlLabel   
+                control={<Checkbox value="remember" color="primary" />}
+                label="Pedicure"
+              />
+              </Grid>
+              <Grid item xs={6} sm={4} md={4}>
+            <FormControlLabel   
+                control={<Checkbox value="remember" color="primary" />}
+                label="Cabeleleiro"
+              />
+              </Grid>
+              <Grid item xs={6} sm={4} md={4}>
+              <FormControlLabel   
+                control={<Checkbox value="remember" color="primary" />}
+                label="Maquiador"
+              />
+              </Grid>
+              <Grid item xs={6} sm={4} md={4}>
+              <FormControlLabel   
+                control={<Checkbox value="remember" color="primary" />}
+                label="Design Sobrancelha"
+              />
+             </Grid>
+             
+              <Grid item xs={6} sm={4} md={4}>
+              <FormControlLabel   
+                control={<Checkbox value="remember" color="primary" />}
+                label="Depiladora"
+              />
+             </Grid>
+          </Grid>
+            
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2,  bgcolor: "#ad1457",
+              sx={{ mt: 3, 
+                mb: 2,
+                  bgcolor: "#ad1457",
               '&:hover': {
                bgcolor: "#ec407a",
              },
@@ -184,8 +202,8 @@ export default function Formulario() {
               INSCREVER-SE
             </Button>
             <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Button onClick={paginaLogin}>
+              <Grid container>
+                <Button onClick={paginaLogin} >
  Já possui uma conta? Entrar
                 </Button>
               </Grid>
