@@ -6,13 +6,20 @@ export async function cadastrarUsuario(){
     const email= (document.getElementById("email") as HTMLInputElement)?.value;
     const senha= (document.getElementById("senha") as HTMLInputElement)?.value;    
     const descricao= (document.getElementById("descricao") as HTMLInputElement)?.value;
-     const usuario = new Usuario();
+    const cidade= (document.getElementById("cidade") as HTMLInputElement)?.value;
+    const uf= (document.getElementById("uf") as HTMLInputElement)?.value;
+    
+    
+    const usuario = new Usuario();
 
     usuario.nome = nome;
     usuario.cpf = cpf;
     usuario.telefone = telefone;
     usuario.email = email;
     usuario.senha = senha;
-    usuario.descricao = descricao;
+    usuario.cidade = cidade ;
+    usuario.uf = uf;
+    
+
     
 }
