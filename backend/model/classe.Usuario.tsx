@@ -3,9 +3,9 @@ class Usuario {
     private cpfProfissional: string;
     private telefoneProfissional: string;
     private emailProfissional: string;
-    private senhaProfissional: string ;   
-    private descricaoProfissional: string ;   
-
+    private senhaProfissional: string ;     
+    private cidadeProfissional: string;
+    private ufProfissional: string;
 
 constructor(
     nome = "",
@@ -13,15 +13,16 @@ constructor(
     telefone = "",
     email = "",
     senha = "",
-    descricao = ""
-){
+    cidade = "",
+    uf = ""
+    ){
     this.nomeProfissional = nome;
 	this.cpfProfissional = cpf;
     this.telefoneProfissional = telefone;
     this.emailProfissional = email;
     this.senhaProfissional = senha;
-    this.descricaoProfissional = descricao;
-
+    this.cidadeProfissional = cidade;
+    this.ufProfissional = uf;    
  }
  get nome(): string {
      return this.nomeProfissional
@@ -57,13 +58,20 @@ get senha(): string {
 set senha(senhaProfissional: string) {
     this.senhaProfissional = senhaProfissional
 }
+get cidade(): string {
+    return this.cidadeProfissional
+}
+set cidade(cidadeProfissional: string) {
+    this.cidadeProfissional = cidadeProfissional
+}
+get uf(): string {
+    return this.ufProfissional
+}
+set uf(ufProfissional: string) {
+    this.ufProfissional = ufProfissional
+}
 
-get descricao(): string {
-    return this.descricaoProfissional
-}
-set descricao(descricaoProfissional: string) {
-    this.descricaoProfissional = descricaoProfissional
-}
+
 
 }
 
