@@ -1,5 +1,7 @@
 import Usuario from '../model/classe.Usuario';
+
 export async function cadastrarUsuario(){
+    
     const nome = (document.getElementById("nome") as HTMLInputElement)?.value;
     const cpf = (document.getElementById("cpf") as HTMLInputElement)?.value;
     const telefone = (document.getElementById("telefone") as HTMLInputElement)?.value;
