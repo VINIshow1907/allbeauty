@@ -1,8 +1,7 @@
 import express, {Request, Response, NextFunction, Router} from "express"
 import 'express-async-errors'
 import cors from 'cors';
-
-import { router } from "../routes";
+import { router } from "../routes/router.js";
 
 
 const app = express();
