@@ -7,46 +7,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Profissional{
-  id Int @id @default(autoincrement())
-  nome String @db.VarChar(75) 
-  cpf String @db.VarChar(11)
-  email String @unique @db.VarChar(50)
-  senha String @db.VarChar(25)
-  descricao String @db.VarChar(100)
-  
-  criado_em DateTime? @default(now())
-  modificado_em DateTime? @default(now())
-  
-//ESTA DANDO ERRO
- // cidade Cidade @relation(fields: [id_cidade],references: [id])
-   
-  @@map("profissional")
-  id_cidade String
-  
+model cidade {
+  idcidade   Int     @id(map: "pk_cidade")
+  nomecidade String? @db.VarChar(40)
+  idestado   Int
+  estado     estado  @relation(fields: [idestado], references: [idestado], onDelete: NoAction, onUpdate: NoAction, map: "fk_cidade_estado")
 }
-model Estado{
-  id Int @id @default(autoincrement())
-  nome String @db.VarChar(75)
 
-  criado_em DateTime? @default(now())
-  modificado_em DateTime? @default(now())
-
-  @@map("estado")
-
+model estado {
+  idestado   Int      @id(map: "pk_estado")
+  nomeestado String?  @db.VarChar(40)
+  cidade     cidade[]
 }
-model Cidade{
-  id Int @id @default(autoincrement())
-  nome String @db.VarChar(75)
-  criado_em DateTime? @default(now())
-  modificado_em DateTime? @default(now())
 
-  @@map("cidade")
+model itemservico {
+  iditemservico  Int          @id(map: "pk_itemservico")
+  idprofissional Int
+  idservico      Int
+  profissional   profissional @relation(fields: [idprofissional], references: [idprofissional], onDelete: NoAction, onUpdate: NoAction, map: "fk_itemservico_profissional")
+  servico        servico      @relation(fields: [idservico], references: [idservico], onDelete: NoAction, onUpdate: NoAction, map: "fk_itemservico_servico")
 }
-model Servico{
-  id Int @id @default(autoincrement())
-  nome String @db.VarChar(100)
-  descricao String @db.VarChar(200)
-  
-  @@map("servico")
+
+model profissional {
+  idprofissional        Int           @id(map: "pk_profissional")
+  idcidade              Int
+  nomeprofissional      String?       @db.VarChar(40)
+  telefoneprofissional  String?       @db.VarChar(11)
+  cpfprofissional       String?       @db.VarChar(11)
+  emailprofissional     String?       @db.VarChar(50)
+  senhaprofissional     String?       @db.VarChar(25)
+  descricaoprofissional String?       @db.VarChar(200)
+  itemservico           itemservico[]
+}
+
+model servico {
+  idservico        Int           @id(map: "pk_servico")
+  nomeservico      String?       @db.VarChar(40)
+  descricaoservico String?       @db.VarChar(200)
+  itemservico      itemservico[]
 }
