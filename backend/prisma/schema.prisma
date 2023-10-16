@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,35 +8,45 @@ datasource db {
 }
 
 model Profissional{
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   nome String @db.VarChar(75) 
   cpf String @db.VarChar(11)
-  email String @db.VarChar(50)
+  email String @unique @db.VarChar(50)
   senha String @db.VarChar(25)
-  uf String @db.VarChar(2)
-  cidade String @db.VarChar(50)
-
   descricao String @db.VarChar(100)
+  
   criado_em DateTime? @default(now())
   modificado_em DateTime? @default(now())
-
+  
+//ESTA DANDO ERRO
+ // cidade Cidade @relation(fields: [id_cidade],references: [id])
+   
   @@map("profissional")
+  id_cidade String
+  
 }
 model Estado{
-  id String @id @default(uuid())
-  nomeEstado String @db.VarChar(75)
+  id Int @id @default(autoincrement())
+  nome String @db.VarChar(75)
 
   criado_em DateTime? @default(now())
   modificado_em DateTime? @default(now())
 
   @@map("estado")
+
 }
 model Cidade{
-  id String @id @default(uuid())
-  nomeCidade String @db.VarChar(75)
-
+  id Int @id @default(autoincrement())
+  nome String @db.VarChar(75)
   criado_em DateTime? @default(now())
   modificado_em DateTime? @default(now())
+
   @@map("cidade")
- 
+}
+model Servico{
+  id Int @id @default(autoincrement())
+  nome String @db.VarChar(100)
+  descricao String @db.VarChar(200)
+  
+  @@map("servico")
 }
