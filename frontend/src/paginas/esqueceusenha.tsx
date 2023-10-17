@@ -70,10 +70,6 @@ export default function Login() {
             autoComplete="Senha atual"
             autoFocus
           />
-          <FormControlLabel
-            control={<Checkbox value="Lembredemim" color="primary" />}
-            label="Lembre de mim"
-          />
           <Button onClick={paginaHomeProfissional}
             type="submit"
             fullWidth
