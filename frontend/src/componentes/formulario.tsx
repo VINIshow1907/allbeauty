@@ -1,5 +1,5 @@
 import * as React from "react";
-import  useTheme  from "@mui/material";
+import useTheme from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,14 +13,14 @@ import { Route, Link, useNavigate, Navigate } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { Formik } from "formik";
-
+import axios from "axios";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Formulario() {
   const navigate = useNavigate();
-  
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -52,7 +52,6 @@ export default function Formulario() {
             flexDirection: "column",
             alignItems: "center",
             borderRadius: "20px",
-            
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "#ad1457" }}></Avatar>
@@ -66,7 +65,7 @@ export default function Formulario() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid container item xs={12} sm={6}  >
+              <Grid container item xs={12} sm={6}>
                 <TextField
                   autoComplete="nome completo"
                   name="nome completo"
@@ -76,10 +75,10 @@ export default function Formulario() {
                   label="NOME COMPLETO"
                   autoFocus
                 />
-                </Grid>
+              </Grid>
               <br></br>
               <Grid item xs={12} sm={6}>
-                <TextField  
+                <TextField
                   required
                   fullWidth
                   id="cpf"
@@ -100,9 +99,8 @@ export default function Formulario() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={6} >
-                <TextField 
-                  
+              <Grid item xs={12} sm={6}>
+                <TextField
                   required
                   fullWidth
                   id="uf"
@@ -111,102 +109,103 @@ export default function Formulario() {
                   autoComplete="uf"
                 />
               </Grid>
-              <Grid item xs={12} >
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="CIDADE"
+                  id="cidade"
                   label="CIDADE"
                   name="cidade"
                   autoComplete="cidade"
                 />
               </Grid>
-              
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="DIGITE SEU EMAIL"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <br></br>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="senha"
-                label="DIGITE SUA SENHA"
-                type="password"
-                id="Senha"
-                autoComplete="nova senha"
-              />
-            </Grid>
-              <Grid item xs={12} >
-          <Typography variant="h6" textAlign={"center"}>
-             Serviço Prestado                 
-          </Typography>
-          </Grid>
-            <br></br>
-            <Grid item xs={6} sm={4} md={4}>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Manicure"
-              />
-            </Grid>
-            <Grid item xs={6} sm={4} md={4}>
-            <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Pedicure"
-              />
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="DIGITE SEU EMAIL"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <br></br>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="senha"
+                  label="DIGITE SUA SENHA"
+                  type="password"
+                  id="Senha"
+                  autoComplete="nova senha"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="h6" textAlign={"center"}>
+                  Serviço Prestado
+                </Typography>
+              </Grid>
+              <br></br>
+              <Grid item xs={6} sm={4} md={4}>
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" name="manicure" id="manicure" />}
+                  label="Manicure"
+                />
+              </Grid>
+              <Grid item xs={6} sm={4} md={4} >
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" name="pedicure" id="pedicure" />}
+                  label="Pedicure"
+                />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
-            <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Cabeleleiro"
-              />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" name="cabeleleiro" id="cabeleleiro"/>}
+                  label="Cabeleleiro"
+                />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
-              <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Maquiador"
-              />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" name="maquiador" id="maquiador"/>}
+                  label="Maquiador"
+                />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
-              <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Design Sobrancelha"
-              />
-             </Grid>
-             
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" name="designsobrancelha" id="designsobrancelha"/>}
+                  label="Design Sobrancelha"
+                />
+              </Grid>
+
               <Grid item xs={6} sm={4} md={4}>
-              <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Depiladora"
-              />
-             </Grid>
-          </Grid>
-            
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" name="depiladora" id="depiladora"/>}
+                  label="Depiladora"
+                />
+              </Grid>
+            </Grid>
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, 
+              sx={{
+                mt: 3,
                 mb: 2,
-                  bgcolor: "#ad1457",
-              '&:hover': {
-               bgcolor: "#ec407a",
-             },
-             }}
+                bgcolor: "#ad1457",
+                "&:hover": {
+                  bgcolor: "#ec407a",
+                },
+              }}
             >
               INSCREVER-SE
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid container>
-                <Button onClick={paginaLogin} >
- Já possui uma conta? Entrar
+                <Button onClick={paginaLogin}>
+                  Já possui uma conta? Entrar
                 </Button>
               </Grid>
             </Grid>
