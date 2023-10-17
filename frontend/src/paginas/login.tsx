@@ -73,10 +73,7 @@ Login
             id="senha"
             autoComplete="Senha atual"
           />
-          <FormControlLabel
-            control={<Checkbox value="Lembredemim" color="primary" />}
-            label="Lembre de mim"
-          />
+          
           <Button onClick={paginaHomeProfissional}
 
             type="submit"
