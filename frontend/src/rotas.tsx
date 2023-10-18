@@ -17,7 +17,6 @@ export default function Rotas(){
                 <Route path="/editarprofissional" element={<EditarProfissional />} />
                 <Route path="homeprofissional" element={<HomeProfissional />} />
                 <Route path="esqueceusenha" element={<EsqueceuSenha/>} />
-                
             </Routes>
 
             </BrowserRouter>
