@@ -21,6 +21,26 @@ const defaultTheme = createTheme();
 export default function Formulario() {
   const navigate = useNavigate();
 
+  const ligacao = axios.post('/user', {
+    nome: '',
+    cpf: '',
+    telefone: '',
+    estado:"",
+    cidade:'',
+    email: '',
+    senha:'',
+  });
+
+  
+  ligacao
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+  
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
