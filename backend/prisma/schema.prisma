@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  
 }
 
 datasource db {
@@ -7,21 +8,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model cidade {
-  idcidade   Int     @id(map: "pk_cidade")
-  nomecidade String? @db.VarChar(40)
-  idestado   Int
-  estado     estado  @relation(fields: [idestado], references: [idestado], onDelete: NoAction, onUpdate: NoAction, map: "fk_cidade_estado")
-}
-
-model estado {
-  idestado   Int      @id(map: "pk_estado")
-  nomeestado String?  @db.VarChar(40)
-  cidade     cidade[]
-}
-
 model itemservico {
-  iditemservico  Int          @id(map: "pk_itemservico")
+  iditemservico  Int          @id(map: "pk_itemservico")  @default(autoincrement())
   idprofissional Int
   idservico      Int
   profissional   profissional @relation(fields: [idprofissional], references: [idprofissional], onDelete: NoAction, onUpdate: NoAction, map: "fk_itemservico_profissional")
@@ -29,8 +17,9 @@ model itemservico {
 }
 
 model profissional {
-  idprofissional        Int           @id(map: "pk_profissional")
-  idcidade              Int
+  idprofissional        Int           @id(map: "pk_profissional") @default(autoincrement())
+  cidadeprofissional    String?       @db.VarChar(50)
+  estadoprofissional    String?       @db.VarChar(2)
   nomeprofissional      String?       @db.VarChar(40)
   telefoneprofissional  String?       @db.VarChar(11)
   cpfprofissional       String?       @db.VarChar(11)
@@ -41,7 +30,7 @@ model profissional {
 }
 
 model servico {
-  idservico        Int           @id(map: "pk_servico")
+  idservico        Int           @id(map: "pk_servico")  @default(autoincrement())
   nomeservico      String?       @db.VarChar(40)
   descricaoservico String?       @db.VarChar(200)
   itemservico      itemservico[]
