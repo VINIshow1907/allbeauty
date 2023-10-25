@@ -5,7 +5,7 @@ import Rodape from "../componentes/rodape";
 import { Route, useNavigate, Navigate } from "react-router-dom";
 import Menusuperior from "../componentes/menusuperior";
 import axios from "axios";
-import { Grid } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, Typography,TextField } from "@mui/material";
 import Carrossel from "../componentes/carrosselhome";
 import "../estilos/fonte.css"; // Importe o arquivo CSS de estilos
 
@@ -14,7 +14,7 @@ export default function Home() {
 
   const paginaCadastro = () => {
     navigate("/Cadastro");
-  };
+  }; 
 
   return (
     <Box
@@ -30,7 +30,6 @@ export default function Home() {
 
       <Grid
         container
-        xs={12}
         justifyContent="center" // centralize o conteudo horizontalmente
         alignItems="center" // centraliza o conteudo verticalmente
         sx={{
@@ -46,14 +45,86 @@ export default function Home() {
         }}
       >
         <Grid item xs={12}>
-          <h2> Escolha o Profissional que o mais agrada</h2>
+          <h2> Escolha o Profissional que mais o agrada</h2>
           <p>
             Selecione o seu estado, a sua cidade e o serviço que procura para
             encontrar os profissionais que melhor atendem às suas necessidades.
           </p>
         </Grid>
       </Grid>
-      <Rodape />
+      <Grid container spacing={2}>
+            
+      <Grid item xs={12} sm={6} md={4}>
+                <TextField
+                  required
+                  fullWidth
+                  id="uf"
+                  label="UF"
+                  name="uf"
+                  autoComplete="uf"
+                />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+                <TextField
+                  required
+                  fullWidth
+                  id="cidade"
+                  label="CIDADE"
+                  name="cidade"
+                  autoComplete="cidade"
+                  />
+              </Grid>
+              </Grid>
+      <Grid container>
+      <Grid item xs={12}>
+        <Typography variant="h6" align="center">
+          Serviço Prestado
+        </Typography>
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="manicure" id="manicure" />}
+          label="Manicure"
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="pedicure" id="pedicure" />}
+          label="Pedicure"
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="cabeleleiro" id="cabeleleiro" />}
+          label="Cabeleleiro"
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="maquiador" id="maquiador" />}
+          label="Maquiador"
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="designsobrancelha" id="designsobrancelha" />}
+          label="Design Sobrancelha"
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="depiladora" id="depiladora" />}
+          label="Depiladora"
+        />
+      </Grid>
+    </Grid>
+    <Rodape />
     </Box>
   );
 }
