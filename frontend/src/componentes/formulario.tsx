@@ -12,8 +12,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Link, useNavigate, Navigate } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Formik } from "formik";
-import axios from "axios";
+import { useState } from "react";
+import axios from 'axios'
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -21,40 +21,34 @@ const defaultTheme = createTheme();
 export default function Formulario() {
   const navigate = useNavigate();
 
-  const ligacao = axios.post('/user', {
+  const [profissional, setprofissional] = useState({
     nome: '',
     cpf: '',
     telefone: '',
-    estado:"",
-    cidade:'',
     email: '',
-    senha:'',
+    senha: '',
+    cidade: '',
+    estado: ''
   });
 
-  
-  ligacao
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      cpf: data.get("cpf"),
-      servico: data.get("servico"),
-      telefone: data.get("telefone"),
-      uf: data.get("uf"),
-      cidade: data.get("cidade"),
-    });
+  const valueInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setprofissional({ ...profissional, [name]: value });
   };
 
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log("Frontend - tentando cadastrar")
+    
+    axios.post("http://localhost:5000/cadastroprofissional", profissional)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+    console.log('passou pelo axios')
+  };
   const paginaLogin = () => {
     navigate("/login");
   };
@@ -80,7 +74,6 @@ export default function Formulario() {
           </Typography>
           <Box
             component="form"
-            noValidate
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
@@ -88,12 +81,15 @@ export default function Formulario() {
               <Grid container item xs={12} sm={6}>
                 <TextField
                   autoComplete="nome completo"
-                  name="nome completo"
+                  name="nome"
                   required
                   fullWidth
                   id="nomecompleto"
                   label="NOME COMPLETO"
+                  value={profissional.nome}
+                  onChange={valueInput}
                   autoFocus
+                  inputProps={{maxLength:40}}
                 />
               </Grid>
               <br></br>
@@ -105,6 +101,9 @@ export default function Formulario() {
                   label="CPF"
                   name="cpf"
                   autoComplete="cpf"
+                  value={profissional.cpf}
+                  onChange={valueInput}
+                  inputProps={{maxLength:11}}
                 />
               </Grid>
               <br></br>
@@ -116,17 +115,23 @@ export default function Formulario() {
                   label="TELEFONE"
                   name="telefone"
                   autoComplete="telefone"
-                />
+                  value={profissional.telefone}
+                  onChange={valueInput}
+                  inputProps={{maxLength:11}}
+                  />
               </Grid>
 
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="uf"
-                  label="UF"
-                  name="uf"
-                  autoComplete="uf"
+                  id="estado"
+                  label="Estado"
+                  name="estado"
+                  autoComplete="estado"
+                  value={profissional.estado}
+                  onChange={valueInput}
+                  inputProps={{maxLength:2}}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -137,6 +142,9 @@ export default function Formulario() {
                   label="CIDADE"
                   name="cidade"
                   autoComplete="cidade"
+                  value={profissional.cidade}
+                  onChange={valueInput}
+                  inputProps={{maxLength:50}}
                 />
               </Grid>
 
@@ -148,6 +156,9 @@ export default function Formulario() {
                   label="DIGITE SEU EMAIL"
                   name="email"
                   autoComplete="email"
+                  value={profissional.email}
+                  onChange={valueInput}
+                  inputProps={{maxLength:50}}
                 />
               </Grid>
               <br></br>
@@ -158,8 +169,11 @@ export default function Formulario() {
                   name="senha"
                   label="DIGITE SUA SENHA"
                   type="password"
-                  id="Senha"
+                  id="senha"
                   autoComplete="nova senha"
+                  value={profissional.senha}
+                  onChange={valueInput}
+                  inputProps={{maxLength:25}}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -170,38 +184,79 @@ export default function Formulario() {
               <br></br>
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" name="manicure" id="manicure" />}
+                  control={
+                    <Checkbox
+                      value="remember"
+                      color="primary"
+                      name="manicure"
+                      id="manicure"
+                    />
+                  }
                   label="Manicure"
                 />
               </Grid>
-              <Grid item xs={6} sm={4} md={4} >
+              <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" name="pedicure" id="pedicure" />}
+                  control={
+                    <Checkbox
+                      value="remember"
+                      color="primary"
+                      name="pedicure"
+                      id="pedicure"
+                    />
+                  }
                   label="Pedicure"
                 />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" name="cabeleleiro" id="cabeleleiro"/>}
+                  control={
+                    <Checkbox
+                      value="remember"
+                      color="primary"
+                      name="cabeleleiro"
+                      id="cabeleleiro"
+                    />
+                  }
                   label="Cabeleleiro"
                 />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" name="maquiador" id="maquiador"/>}
+                  control={
+                    <Checkbox
+                      value="remember"
+                      color="primary"
+                      name="maquiador"
+                      id="maquiador"
+                    />
+                  }
                   label="Maquiador"
                 />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" name="designsobrancelha" id="designsobrancelha"/>}
+                  control={
+                    <Checkbox
+                      value="remember"
+                      color="primary"
+                      name="designsobrancelha"
+                      id="designsobrancelha"
+                    />
+                  }
                   label="Design Sobrancelha"
                 />
               </Grid>
-
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" name="depiladora" id="depiladora"/>}
+                  control={
+                    <Checkbox
+                      value="remember"
+                      color="primary"
+                      name="depiladora"
+                      id="depiladora"
+                    />
+                  }
                   label="Depiladora"
                 />
               </Grid>
@@ -219,6 +274,7 @@ export default function Formulario() {
                   bgcolor: "#ec407a",
                 },
               }}
+              id="btnCadastro"
             >
               INSCREVER-SE
             </Button>
@@ -233,5 +289,5 @@ export default function Formulario() {
         </Box>
       </Container>
     </ThemeProvider>
-  );
+      );
 }
