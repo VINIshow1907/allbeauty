@@ -51,6 +51,43 @@ export const cadastroProfissional = async (req:Request, res:Response, next: Next
         res.status(500).json({error})
     }
 }
+const express = require('express');
+const app = express();
+const port = 5000;
+const pgp = require('pg-promise')();
+const db = pgp('postgresql://postgres:1234@localhost:5432/allbeauty');
+
+
+app.use(express.json());
+
+app.post('/cadastroprofissional', (req: { body: { nome: any; cpf: any; telefone: any; email: any; senha: any; cidade: any; estado: any; servicosSelecionados: any } }, res: any) => {
+    const { nome, cpf, telefone, email, senha, cidade, estado, servicosSelecionados } = req.body;
+    
+    db.tx(async (t: any) => {
+        const profissional = await t.one('INSERT INTO profissionais(nome, cpf, telefone, email, cidade, estado) VALUES($1, $2, $3, $4, $5, $6) RETURNING id',
+      [nome, cpf, telefone, email, cidade, estado]);
+
+        // Crie entradas na tabela "itemservico" para serviços selecionados
+    for (const service in servicosSelecionados) {
+        if (servicosSelecionados[service]) {
+          await t.none('INSERT INTO itemservico(profissional_id, servico) VALUES($1, $2)',
+            [profissional.id, service]);
+        }
+      }
+
+      res.json({ message: 'Profissional cadastrado com sucesso', profissionalId: profissional.id });
+    })
+      .catch((error: any) => {
+        console.error(error);
+        res.status(500).json({ message: 'Erro ao cadastrar profissional' });
+      });
+  });
+  
+  app.listen(port, () => {
+    console.log(`O servidor está rodando na porta  ${port}`);
+  });
+
+
 
 // export const updateProduct = async (req, res) => {
 //     const { name, price } = req.body
