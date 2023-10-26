@@ -49,6 +49,40 @@ export default function Formulario() {
     });
     console.log('passou pelo axios')
   };
+
+  //CRIANDO A CHECKBOX 
+  const [servicosSelecionados, setservicosSelecionados] = useState({
+    manicure: false,
+    pedicure: false,
+    cabeleleiro: false,
+    maquiador: false,
+    designsobrancelha: false,
+    depiladora: false,
+  });
+  const handleServiceSelection = (event: { target: { name: any; checked: any; }; }) => {
+    const { name, checked } = event.target;
+    setservicosSelecionados({ ...servicosSelecionados, [name]: checked });
+  };
+  const identificadorSubmit = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    console.log("Frontend - tentando cadastrar")
+
+        // Adicione as seleções das caixas de seleção aos dados do profissional
+    
+    const dadosParaEnviar = { ...profissional, servicosSelecionados };
+
+    axios.post('http://localhost:5000/cadastroprofissional', dadosParaEnviar)
+    .then((response) => {
+      console.log(response.data);
+       // Depois de um cadastro bem-sucedido, você pode criar uma entrada na tabela "itemservico" no seu servidor.
+        // Certifique-se de implementar isso no seu servidor.
+    })
+        .catch((error) => {
+      console.error(error);
+    });
+};
+
+
   const paginaLogin = () => {
     navigate("/login");
   };
@@ -190,6 +224,8 @@ export default function Formulario() {
                       color="primary"
                       name="manicure"
                       id="manicure"
+                      checked={servicosSelecionados.manicure}
+                      onChange={handleServiceSelection}
                     />
                   }
                   label="Manicure"
@@ -203,6 +239,8 @@ export default function Formulario() {
                       color="primary"
                       name="pedicure"
                       id="pedicure"
+                      checked={servicosSelecionados.pedicure}
+                      onChange={handleServiceSelection}
                     />
                   }
                   label="Pedicure"
@@ -216,6 +254,8 @@ export default function Formulario() {
                       color="primary"
                       name="cabeleleiro"
                       id="cabeleleiro"
+                      checked={servicosSelecionados.cabeleleiro}
+                      onChange={handleServiceSelection}
                     />
                   }
                   label="Cabeleleiro"
@@ -229,6 +269,8 @@ export default function Formulario() {
                       color="primary"
                       name="maquiador"
                       id="maquiador"
+                      checked={servicosSelecionados.maquiador}
+                      onChange={handleServiceSelection}
                     />
                   }
                   label="Maquiador"
@@ -242,6 +284,8 @@ export default function Formulario() {
                       color="primary"
                       name="designsobrancelha"
                       id="designsobrancelha"
+                      checked={servicosSelecionados.designsobrancelha}
+                      onChange={handleServiceSelection}
                     />
                   }
                   label="Design Sobrancelha"
@@ -255,6 +299,8 @@ export default function Formulario() {
                       color="primary"
                       name="depiladora"
                       id="depiladora"
+                      checked={servicosSelecionados.depiladora}
+                      onChange={handleServiceSelection}
                     />
                   }
                   label="Depiladora"
@@ -291,3 +337,7 @@ export default function Formulario() {
     </ThemeProvider>
       );
 }
+function createItemServico(profissionalId: any, servicosSelecionados: { manicure: boolean; pedicure: boolean; cabeleleiro: boolean; maquiador: boolean; designsobrancelha: boolean; depiladora: boolean; }) {
+  throw new Error("Function not implemented.");
+}
+
