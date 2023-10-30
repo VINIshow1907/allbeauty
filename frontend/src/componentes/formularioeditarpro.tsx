@@ -73,6 +73,7 @@ export default function FormularioEditarPro() {
                   fullWidth
                   id="nomecompleto"
                   label="NOME COMPLETO"
+                  disabled
                   autoFocus
                 />
                 </Grid>
@@ -84,6 +85,7 @@ export default function FormularioEditarPro() {
                   id="cpf"
                   label="CPF"
                   name="cpf"
+                  disabled
                   autoComplete="cpf"
                 />
               </Grid>
@@ -96,6 +98,7 @@ export default function FormularioEditarPro() {
                   label="TELEFONE"
                   name="telefone"
                   autoComplete="telefone"
+                  disabled
                 />
               </Grid>
 
@@ -108,6 +111,7 @@ export default function FormularioEditarPro() {
                   label="UF"
                   name="uf"
                   autoComplete="uf"
+                  disabled
                 />
               </Grid>
               <Grid item xs={12} >
@@ -118,6 +122,7 @@ export default function FormularioEditarPro() {
                   label="CIDADE"
                   name="cidade"
                   autoComplete="cidade"
+                  disabled
                 />
               </Grid>
               
@@ -129,6 +134,7 @@ export default function FormularioEditarPro() {
                 label="DIGITE SEU EMAIL"
                 name="email"
                 autoComplete="email"
+                disabled
               />
             </Grid>
             <br></br>
@@ -141,6 +147,7 @@ export default function FormularioEditarPro() {
                 type="password"
                 id="Senha"
                 autoComplete="nova senha"
+                disabled
               />
             </Grid>
               <Grid item xs={12} >
@@ -153,30 +160,35 @@ export default function FormularioEditarPro() {
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Manicure"
+                disabled
               />
             </Grid>
             <Grid item xs={6} sm={4} md={4}>
             <FormControlLabel   
                 control={<Checkbox value="remember" color="primary" />}
                 label="Pedicure"
+                disabled
               />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
             <FormControlLabel   
                 control={<Checkbox value="remember" color="primary" />}
                 label="Cabeleleiro"
+                disabled
               />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
               <FormControlLabel   
                 control={<Checkbox value="remember" color="primary" />}
                 label="Maquiador"
+                disabled
               />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
               <FormControlLabel   
                 control={<Checkbox value="remember" color="primary" />}
                 label="Design Sobrancelha"
+                disabled
               />
              </Grid>
              
@@ -184,6 +196,7 @@ export default function FormularioEditarPro() {
               <FormControlLabel   
                 control={<Checkbox value="remember" color="primary" />}
                 label="Depiladora"
+                disabled
               />
              </Grid>
           </Grid>
