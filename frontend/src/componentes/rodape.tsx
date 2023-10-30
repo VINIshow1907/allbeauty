@@ -23,15 +23,15 @@ export default function Rodape() {
       >
         <CssBaseline />
         <Container component="main" sx={{ mt: 8, mb:2, color: "white" }} maxWidth="sm" >
-          <Typography variant="h2" component="h1" gutterBottom >
+          <Typography variant="h2" component="h1" gutterBottom textAlign={"center"}>
             ALLBEAUTY
           </Typography>
-          <Typography variant="h5" component="h2" gutterBottom>
+          <Typography variant="h5" component="h2" gutterBottom textAlign={"center"}>
             {"Profissionais da mais alta qualidade estão aqui!"}
             <p></p>
             {"Melhor site de busca na aréa da beleza"}
           </Typography>
-          <Typography variant="body1">ALLBEAUTY</Typography>
+          <Typography variant="body1" textAlign={"center"}>ALLBEAUTY</Typography>
         </Container>
         <Box
           component="footer"
@@ -46,7 +46,7 @@ export default function Rodape() {
           }}
         >
           <Container maxWidth="sm">
-            <Typography variant="body1">Maria Clara e Vinicius</Typography>
+            <Typography variant="body1" textAlign={"center"}>Maria Clara e Vinicius</Typography>
           </Container>
         </Box>
       </Box>
