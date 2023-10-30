@@ -28,13 +28,25 @@ export default function Formulario() {
     email: '',
     senha: '',
     cidade: '',
-    estado: ''
+    estado: '',
+    descricao:''
   });
 
+  //esse e da checkbox
+    
   const valueInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const { name, value } = e.target;
     setprofissional({ ...profissional, [name]: value });
   };
+   
+  //esse e da checkbox
+
+ //   const servicosSelecionadosArray = Object.keys(servicosSelecionados).filter(
+ //   (servico: keyof typeof servicosSelecionados) => servicosSelecionados[servico]
+ // );
+  
+
+//  console.log('Serviços selecionados:', servicosSelecionadosArray);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -42,48 +54,67 @@ export default function Formulario() {
     
     axios.post("http://localhost:5000/cadastroprofissional", profissional)
     .then(response => {
-      console.log(response.data);
+      console.log("ID do profissional cadastrado:", response.data.id);
     })
     .catch(error => {
       console.error(error);
     });
     console.log('passou pelo axios')
   };
+  
 
-  //CRIANDO A CHECKBOX 
-  const [servicosSelecionados, setservicosSelecionados] = useState({
-    manicure: false,
-    pedicure: false,
-    cabeleleiro: false,
-    maquiador: false,
-    designsobrancelha: false,
-    depiladora: false,
-  });
-  const handleServiceSelection = (event: { target: { name: any; checked: any; }; }) => {
-    const { name, checked } = event.target;
-    setservicosSelecionados({ ...servicosSelecionados, [name]: checked });
-  };
-  const identificadorSubmit = (event: { preventDefault: () => void; }) => {
+
+
+  const manipuladorsubmitservico = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Frontend - tentando cadastrar")
+    console.log("Frontend - tentando cadastrar o servico")
 
-        // Adicione as seleções das caixas de seleção aos dados do profissional
+    function servico (checkbox: any){
+      var data = new FormData();
+      const pesquisaServico = document.createElement("checkbox", checkbox.pesquisaServico);
+       fetch('http://localhost:5000/pequisaservico', {
+        method:"GET",
+        body: data
+       })
+       .then(retorno=>{
+        console.log("sucesso")
+       })
+      .catch(retorno=>{
+        console.error(retorno)
+      })
+    }
     
-    const dadosParaEnviar = { ...profissional, servicosSelecionados };
-
-    axios.post('http://localhost:5000/cadastroprofissional', dadosParaEnviar)
-    .then((response) => {
-      console.log(response.data);
-       // Depois de um cadastro bem-sucedido, você pode criar uma entrada na tabela "itemservico" no seu servidor.
-        // Certifique-se de implementar isso no seu servidor.
-    })
-        .catch((error) => {
-      console.error(error);
-    });
-};
 
 
-  const paginaLogin = () => {
+
+    
+    //USAR A MAP, criar checklist em javascript com map, caso nao a MAP nao conseguir fazer isso sozinha usar um forEach
+    //pegar informação do banco de dados
+    console.log('passou pelo axios')
+  };
+ 
+  //// id do profissional
+  // Agora você tem o ID do profissional, que pode ser usado para associá-lo aos serviços.
+  ///const profissionalId = response.data.id;
+  
+  // Aqui, você pode chamar a função para criar o item do serviço, passando o profissionalId e os serviços selecionados.
+  //const itemServico = createItemServico(profissionalId, servicosSelecionados);
+
+  // Em seguida, você pode enviar os dados do item de serviço para o servidor.
+  // Certifique-se de que seu servidor possua um endpoint para lidar com a criação de itens de serviço.
+
+  // Exemplo de como enviar o item de serviço para o servidor:
+ // axios.post("http://localhost:5000/criaritemservico", itemServico)
+ // .then(response => {
+ //   console.log("Item de serviço cadastrado:", response.data);
+ // })
+
+
+ 
+  //CRIANDO A CHECKBOX 
+
+
+const paginaLogin = () => {
     navigate("/login");
   };
 
@@ -108,7 +139,7 @@ export default function Formulario() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit} 
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
@@ -152,6 +183,7 @@ export default function Formulario() {
                   value={profissional.telefone}
                   onChange={valueInput}
                   inputProps={{maxLength:11}}
+               
                   />
               </Grid>
 
@@ -211,6 +243,19 @@ export default function Formulario() {
                 />
               </Grid>
               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="descricao"
+                  label="DESCRIÇÃO DO SEU SERVIÇO"
+                  name="descricao"
+                  autoComplete="descricao"
+                  value={profissional.descricao}
+                  onChange={valueInput}
+                  inputProps={{maxLength:200}}
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <Typography variant="h6" textAlign={"center"}>
                   Serviço Prestado
                 </Typography>
@@ -220,90 +265,74 @@ export default function Formulario() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      value="remember"
+                      
                       color="primary"
                       name="manicure"
                       id="manicure"
-                      checked={servicosSelecionados.manicure}
-                      onChange={handleServiceSelection}
-                    />
+                      />
                   }
-                  label="Manicure"
+                  label="MANICURE"
                 />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
                   control={
                     <Checkbox
-                      value="remember"
                       color="primary"
                       name="pedicure"
                       id="pedicure"
-                      checked={servicosSelecionados.pedicure}
-                      onChange={handleServiceSelection}
-                    />
+                       />
                   }
-                  label="Pedicure"
+                  label="PEDICURE"
                 />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
                   control={
                     <Checkbox
-                      value="remember"
                       color="primary"
                       name="cabeleleiro"
                       id="cabeleleiro"
-                      checked={servicosSelecionados.cabeleleiro}
-                      onChange={handleServiceSelection}
-                    />
+                      />
                   }
-                  label="Cabeleleiro"
+                  label="CABELEREIRO"
                 />
               </Grid>
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
                   control={
                     <Checkbox
-                      value="remember"
                       color="primary"
                       name="maquiador"
                       id="maquiador"
-                      checked={servicosSelecionados.maquiador}
-                      onChange={handleServiceSelection}
-                    />
+                      />
                   }
-                  label="Maquiador"
+                  label="MAQUIADOR"
                 />
               </Grid>
+              
               <Grid item xs={6} sm={4} md={4}>
                 <FormControlLabel
                   control={
                     <Checkbox
-                      value="remember"
-                      color="primary"
-                      name="designsobrancelha"
-                      id="designsobrancelha"
-                      checked={servicosSelecionados.designsobrancelha}
-                      onChange={handleServiceSelection}
-                    />
-                  }
-                  label="Design Sobrancelha"
-                />
-              </Grid>
-              <Grid item xs={6} sm={4} md={4}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      value="remember"
                       color="primary"
                       name="depiladora"
                       id="depiladora"
-                      checked={servicosSelecionados.depiladora}
-                      onChange={handleServiceSelection}
-                    />
+                       />
                   }
-                  label="Depiladora"
+                  label="DEPILADORA"
+                />
+              </Grid>
+              <Grid item xs={6} sm={4} md={4}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      color="primary"
+                      name="designsobrancelha"
+                      id="designsobrancelha"
+                       />
+                  }
+                  label="DESIGN SOBRANCELHA"
                 />
               </Grid>
             </Grid>
@@ -337,7 +366,6 @@ export default function Formulario() {
     </ThemeProvider>
       );
 }
-function createItemServico(profissionalId: any, servicosSelecionados: { manicure: boolean; pedicure: boolean; cabeleleiro: boolean; maquiador: boolean; designsobrancelha: boolean; depiladora: boolean; }) {
-  throw new Error("Function not implemented.");
-}
+
+
 
