@@ -4,7 +4,7 @@ import { Route, useNavigate, Navigate } from "react-router-dom";
 import ProMenuSuperior from "../componentes/promenusuperior";
 import Rodape from "../componentes/rodape";
 import Cadastro from "../paginas/cadastro";
-import FormularioEditarPro from "../componentes/formularioeditarpro"
+import FormularioEditarPro from "../componentes/homeprofissional"
 
 export default function EditarProfissional() {
     const navigate = useNavigate();
