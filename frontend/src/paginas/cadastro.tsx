@@ -8,6 +8,7 @@ export default function Cadastro() {
       <div className="img-fundo">
         <Formulario />
       </div>
+      <Rodape />
     </>
   );
 }
