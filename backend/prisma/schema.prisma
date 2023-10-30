@@ -10,11 +10,13 @@ datasource db {
 
 
 model itemservico {
-  iditemservico  Int          @id(map: "pk_itemservico")  @default(autoincrement())
-  idprofissional Int
-  idservico      Int
+  
+  idprofissional Int  
+  idservico      Int  
+  @@id(map: "pk_itemservico",[idprofissional, idservico])
   profissional   profissional @relation(fields: [idprofissional], references: [idprofissional], onDelete: NoAction, onUpdate: NoAction, map: "fk_itemservico_profissional")
   servico        servico      @relation(fields: [idservico], references: [idservico], onDelete: NoAction, onUpdate: NoAction, map: "fk_itemservico_servico")
+  
 }
 
 model profissional {
