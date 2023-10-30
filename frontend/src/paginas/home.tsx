@@ -5,7 +5,7 @@ import Rodape from "../componentes/rodape";
 import { Route, useNavigate, Navigate } from "react-router-dom";
 import Menusuperior from "../componentes/menusuperior";
 import axios from "axios";
-import { Checkbox, FormControlLabel, Grid, Typography,TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, Typography,TextField,Button } from "@mui/material";
 import Carrossel from "../componentes/carrosselhome";
 import "../estilos/fonte.css"; // Importe o arquivo CSS de estilos
 
@@ -52,8 +52,8 @@ export default function Home() {
           </p>
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
-            
+      
+      <Grid container spacing={2} justifyContent={"center"} alignItems={"center"}>
       <Grid item xs={12} sm={6} md={4}>
                 <TextField
                   required
@@ -75,6 +75,8 @@ export default function Home() {
                   />
               </Grid>
               </Grid>
+              <br></br>
+              <br></br>
       <Grid container>
       <Grid item xs={12}>
         <Typography variant="h6" align="center">
@@ -84,46 +86,71 @@ export default function Home() {
 
       <Grid item xs={12} sm={6} md={4}>
         <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="manicure" id="manicure" />}
-          label="Manicure"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="pedicure" id="pedicure" />}
-          label="Pedicure"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
           control={<Checkbox value="remember" color="primary" name="cabeleleiro" id="cabeleleiro" />}
-          label="Cabeleleiro"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="maquiador" id="maquiador" />}
-          label="Maquiador"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="designsobrancelha" id="designsobrancelha" />}
-          label="Design Sobrancelha"
+          label="CABELELEIRO"
         />
       </Grid>
 
       <Grid item xs={12} sm={6} md={4}>
         <FormControlLabel
           control={<Checkbox value="remember" color="primary" name="depiladora" id="depiladora" />}
-          label="Depiladora"
+          label="DEPILADORA"
         />
       </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="designsobrancelha" id="designsobrancelha" />}
+          label="DESIGN SOBRANCELHA"
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="manicure" id="manicure" />}
+          label="MANICURE"
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="maquiador" id="maquiador" />}
+          label="MAQUIADOR"
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" name="pedicure" id="pedicure" />}
+          label="PEDICURE"
+        />
+      </Grid>
+
+
+      
     </Grid>
+    <br></br>
+    <Grid>
+      <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                mt: 3,
+                mb: 2,
+                bgcolor: "#ad1457",
+                "&:hover": {
+                  bgcolor: "#ec407a",
+                },
+                padding: "1% 1%", // Use porcentagens para o tamanho do padding
+                width: "300px",
+              }}
+              id="btnPesquisar"
+            >
+              Pesquisar
+            </Button>
+            </Grid>
+    
     <Rodape />
     </Box>
   );
