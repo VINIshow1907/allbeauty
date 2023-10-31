@@ -23,6 +23,12 @@ export default function ProMenuSuperior() {
   const paginahomeprofissional = () => {
     navigate("/homeprofissional");
   };
+  const excluirprofissional = () => {
+    navigate("/excluirprofissional");
+  };
+  const homeprofissional = () => {
+    navigate("/homeprofissional");
+  }
 
   const paginaLogin = () => {
     navigate("/login");
@@ -87,8 +93,8 @@ export default function ProMenuSuperior() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={editarprofissional}>Meu Perfil</MenuItem>
-                <MenuItem onClick={handleClose}>Minha Conta</MenuItem>
+                <MenuItem onClick={editarprofissional}>Editar Perfil</MenuItem>
+                <MenuItem onClick={homeprofissional}>Visualizar Perfil</MenuItem>
               </Menu>
             </div>
           )}
