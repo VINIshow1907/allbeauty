@@ -1,9 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { autoPlay } from "react-swipeable-views-utils";
-import Rodape from "../componentes/rodape";
+import Rodape from "../componentes/rodape/rodape";
 import { Route, useNavigate, Navigate } from "react-router-dom";
-import Menusuperior from "../componentes/menusuperior";
+import Menusuperior from "../componentes/menuhome/menusuperior";
 import axios from "axios";
 import { Checkbox, FormControlLabel, Grid, Typography,TextField,Button } from "@mui/material";
 import Carrossel from "../componentes/carrosselhome";

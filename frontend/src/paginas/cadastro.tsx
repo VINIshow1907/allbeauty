@@ -1,6 +1,6 @@
-import Formulario from "../componentes/formulario";
+import Formulario from "../componentes/cadastro/formulario";
 import React from "react";
-import Rodape from "../componentes/rodape";
+import Rodape from "../componentes/rodape/rodape";
 
 export default function Cadastro() {
   return (
