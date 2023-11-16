@@ -8,6 +8,7 @@ import axios from "axios";
 import { Checkbox, FormControlLabel, Grid, Typography,TextField,Button } from "@mui/material";
 import Carrossel from "../componentes/carrosselhome";
 import "../estilos/fonte.css"; // Importe o arquivo CSS de estilos
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -125,9 +126,6 @@ export default function Home() {
           label="PEDICURE"
         />
       </Grid>
-
-
-      
     </Grid>
     <br></br>
     <Grid>
@@ -147,10 +145,10 @@ export default function Home() {
               }}
               id="btnPesquisar"
             >
-              Pesquisar
+              Pesquisar <SearchIcon />
             </Button>
             </Grid>
-    
+              <p>AQUI EM BAIXO VAI FICAR OS DADOS DOS PROFISSIONAIS QUE ESTÃO NO BANCO DE DADOS ⬇️⬇️⬇️</p>
     <Rodape />
     </Box>
   );

@@ -13,8 +13,8 @@ import { Route, Link, useNavigate, Navigate } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
-
-
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -250,7 +250,7 @@ export default function FormularioEditarPro() {
              },
              }}
             >
-              Editar
+              Editar <ModeEditOutlineIcon />
             </Button>
             <Button onClick={paginaHomeProfissional}
               type="submit"
@@ -264,7 +264,7 @@ export default function FormularioEditarPro() {
              },
              }}
             >
-             VOLTAR 
+             VOLTAR <ExitToAppIcon />
             </Button>
             <Grid container justifyContent="flex-end">
             </Grid>

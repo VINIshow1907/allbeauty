@@ -138,7 +138,7 @@ const paginaLogin = () => {
         >
           <Avatar sx={{ m: 1, bgcolor: "#ad1457" }}></Avatar>
           <Typography component="h1" variant="h5">
-            Cadastro
+            Perfil
           </Typography>
           <Box
             component="form"

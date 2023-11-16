@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Link, useNavigate } from "react-router-dom";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // TODO remove, this demo shouldn't need to reset the theme.
 
 export default function Login() {
@@ -50,7 +50,7 @@ export default function Login() {
       >
         <Avatar sx={{ m: 1, bgcolor: "#ad1457" }}></Avatar>
         <Typography component="h1" variant="h5">
-Login
+          Login
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -85,7 +85,7 @@ Login
            },
            }}
           >
-            ENTRAR
+            ENTRAR <AccountCircleIcon />
           </Button>
           <Grid container>
           <Grid item>

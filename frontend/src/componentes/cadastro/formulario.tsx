@@ -14,6 +14,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { useState } from "react";
 import axios from 'axios'
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -83,10 +84,6 @@ export default function Formulario() {
         console.error(retorno)
       })
     }
-    
-
-
-
     
     //USAR A MAP, criar checklist em javascript com map, caso nao a MAP nao conseguir fazer isso sozinha usar um forEach
     //pegar informação do banco de dados
@@ -351,7 +348,7 @@ const paginaLogin = () => {
               }}
               id="btnCadastro"
             >
-              INSCREVER-SE
+              INSCREVER-SE <PersonAddIcon />
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid container>
