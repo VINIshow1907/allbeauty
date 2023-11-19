@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
-import { Request, Response,NextFunction } from 'express'
-
+import { Request, Response,NextFunction, request, response } from 'express'
+import prismaClient from '../prisma';
 
 const prisma = new PrismaClient();
 
@@ -48,13 +48,14 @@ export const cadastroProfissional = async (req:Request, res:Response, next: Next
     } catch (error) {
         console.log('deu erro no prisma')
         res.status(500).json({error})
-  }
+    }
 }
 export const visualizarprofissional = async (req: Request, res:Response) => {
     try {
         const response = await prisma.profissional.findUnique({
             where: {
                 idprofissional: Number(req.params.id)
+
             },
         })
         res.status(200).json(response)
@@ -64,6 +65,38 @@ export const visualizarprofissional = async (req: Request, res:Response) => {
         }
     }
     }
+
+    export const getProfissionalById = async (req = request, res = response) => {
+             try {
+                 const response = await prisma.profissional.findUnique({
+                     where: {
+                         idprofissional: Number(req.params.id),
+                     },
+                 })
+                 res.status(200).json(response)
+             } catch (error) {
+                if (error instanceof Error){
+                 res.status(404).json({ msg: error.message })      
+                }
+         }
+        }
+
+
+
+//        class listarservico
+//        async execute() {
+//        const servico = await prismaClient.servico.findMany({
+//            select: {
+//                idservico: true,
+//                nomeservico: true
+//            }
+//        })
+//        return servico;
+//    }
+//
+//function execute() {
+//    throw new Error('Function not implemented.');
+//}
 ///////////////
 //const express = require('express');
 //const app = express();

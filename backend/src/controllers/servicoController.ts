@@ -1,28 +1,34 @@
 import { PrismaClient } from '@prisma/client'
-import { Request, Response,NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
 
 const prisma = new PrismaClient()
 
-export const pesquisaServico = async (req:Request, res:Response, next: NextFunction) => {
-    console.log('Chegou no backend dados do servico')
-    const servico = await prisma.servico.findMany({
-           
-           //caso for selecionar um campo somente
-          //  where: {
-          //  id:
-          // },
+export const pesquisaServico = async (req: Request, res: Response, next: NextFunction) => {
+    console.log('Chegou no backend servico')
+    try {
+        const servico = await prisma.servico.findMany({
+
+            //caso for selecionar um campo somente
+            //  where: {
+            //  id:
+            // },
 
             select: {
                 idservico: true,
                 nomeservico: true,
             }
 
-        }) 
-        console.log('cadastrado servico')
-        return servico 
+        })
+        res.status(200).json(servico)
+    } catch (error) {
+        console.log('deu erro no prisma')
+        res.status(500).json({error})
     }
-     
+}
+
+
+
 
 //////////////
 // export const getProducts = async (req, res) => {

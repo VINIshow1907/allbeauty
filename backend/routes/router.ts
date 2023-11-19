@@ -10,6 +10,7 @@ const router = Router();
 
 router.post('/cadastroprofissional', cadastroProfissional)
 router.get('/pesquisaservico', pesquisaServico)
+
 router.get('/visualizarprofissional', visualizarprofissional)
 router.get('')
 router.get('/teste', () => {

@@ -67,7 +67,6 @@ export default function Formulario() {
   
 
 
-
   const manipuladorsubmitservico = (event: React.FormEvent) => {
     event.preventDefault();
     console.log("Frontend - tentando cadastrar o servico")
@@ -86,16 +85,13 @@ export default function Formulario() {
         console.error(retorno)
       })
     }
-    
-
-
-
-    
-    //USAR A MAP, criar checklist em javascript com map, caso nao a MAP nao conseguir fazer isso sozinha usar um forEach
+        //USAR A MAP, criar checklist em javascript com map, caso nao a MAP nao conseguir fazer isso sozinha usar um forEach
     //pegar informação do banco de dados
     console.log('passou pelo axios')
   };
- 
+ React.useEffect(() => {
+    axios.get
+ }, [])
   //// id do profissional
   // Agora você tem o ID do profissional, que pode ser usado para associá-lo aos serviços.
   ///const profissionalId = response.data.id;
