@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Route, Link, useNavigate, Navigate } from "react-router-dom";
+import { Route, Link, useNavigate, Navigate,useParams } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { useState } from "react";
@@ -23,6 +23,21 @@ const defaultTheme = createTheme();
 
 export default function Formulario() {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+      cpf: data.get("cpf"),
+      servico: data.get("servico"),
+      telefone: data.get("telefone"),
+      uf: data.get("uf"),
+      cidade: data.get("cidade"),
+    });
+  };
 
   const [profissional, setprofissional] = useState({
     nome: '',
@@ -32,8 +47,50 @@ export default function Formulario() {
     senha: '',
     cidade: '',
     estado: '',
-    descricao:''
+    descricao:'',
+    servicos: {
+      manicure: false,
+      pedicure: false,
+      cabeleleiro: false,
+      maquiador: false,
+      designSobrancelha: false,
+      depiladora: false,
+    }
   });
+  React.useEffect(() => {
+    // Faça uma solicitação para obter os dados do profissional
+    axios.get(`http://localhost:5000/visualizarprofissional/${id}`)
+      .then(response => {
+        console.log(response.data)
+        const {
+          cidadeprofissional,
+          estadoprofissional,
+          nomeprofissional,
+          telefoneprofissional,
+          cpfprofissional,
+          emailprofissional,
+          senhaprofissional,
+          descricaoprofissional
+        } = response.data
+
+        setprofissional({
+          ...profissional,
+          cidade: cidadeprofissional,
+          estado: estadoprofissional,
+          nome: nomeprofissional,
+          telefone: telefoneprofissional,
+          cpf: cpfprofissional,
+          email: emailprofissional,
+          senha: senhaprofissional,
+          descricao: descricaoprofissional
+
+        }); // Atualize o estado com os dados reais do profissional
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []); // Certifique-se de passar as dependências corretas, caso contrário, isso pode causar um loop infinito
+
 
   //esse e da checkbox
     
@@ -51,47 +108,11 @@ export default function Formulario() {
 
 //  console.log('Serviços selecionados:', servicosSelecionadosArray);
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log("Frontend - tentando cadastrar")
-    
-    axios.post("http://localhost:5000/cadastroprofissional", profissional)
-    .then(response => {
-      console.log("ID do profissional cadastrado:", response.data.id);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-    console.log('passou pelo axios')
-  };
-  
+ 
+// React.useEffect(() => {
+//    axios.get
+// }, [])
 
-
-  const manipuladorsubmitservico = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log("Frontend - tentando cadastrar o servico")
-
-    function servico (checkbox: any){
-      var data = new FormData();
-      const pesquisaServico = document.createElement("checkbox", checkbox.pesquisaServico);
-       fetch('http://localhost:5000/pequisaservico', {
-        method:"GET",
-        body: data
-       })
-       .then(retorno=>{
-        console.log("sucesso")
-       })
-      .catch(retorno=>{
-        console.error(retorno)
-      })
-    }
-        //USAR A MAP, criar checklist em javascript com map, caso nao a MAP nao conseguir fazer isso sozinha usar um forEach
-    //pegar informação do banco de dados
-    console.log('passou pelo axios')
-  };
- React.useEffect(() => {
-    axios.get
- }, [])
   //// id do profissional
   // Agora você tem o ID do profissional, que pode ser usado para associá-lo aos serviços.
   ///const profissionalId = response.data.id;
@@ -107,12 +128,8 @@ export default function Formulario() {
  // .then(response => {
  //   console.log("Item de serviço cadastrado:", response.data);
  // })
-
-
  
   //CRIANDO A CHECKBOX 
-
-
 const paginaLogin = () => {
     navigate("/login");
   };
@@ -138,6 +155,8 @@ const paginaLogin = () => {
           </Typography>
           <Box
             component="form"
+            noValidate
+            onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>

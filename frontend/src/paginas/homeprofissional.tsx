@@ -14,7 +14,7 @@ export default function EditarProfissional() {
       <ProMenuSuperior/>
       <h1></h1> 
       <FormularioEditarPro/>
- <Rodape/>
+       <Rodape/>
     </>
  );
 }
