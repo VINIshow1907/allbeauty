@@ -148,7 +148,7 @@ export default function Home() {
               Pesquisar <SearchIcon />
             </Button>
             </Grid>
-              <p>AQUI EM BAIXO VAI FICAR OS DADOS DOS PROFISSIONAIS QUE ESTÃO NO BANCO DE DADOS ⬇️⬇️⬇️</p>
+            <p>AQUI EM BAIXO VAI FICAR OS DADOS DOS PROFISSIONAIS QUE ESTÃO NO BANCO DE DADOS ⬇️⬇️⬇️</p>
     <Rodape />
     </Box>
   );
