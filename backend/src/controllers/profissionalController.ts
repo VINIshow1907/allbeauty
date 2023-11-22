@@ -49,7 +49,32 @@ export const cadastroProfissional = async (req:Request, res:Response, next: Next
         console.log('deu erro no prisma')
         res.status(500).json({error})
     }
+}  
+export const associarProfissionalServico = async (req:Request, res:Response) => {
+    const {idprofissional, idservico} = req.body
+
+    try {
+        const itemservico = await prisma.itemservico.create({
+            data: {
+                idprofissional: Number(idprofissional),
+                idservico: Number(idservico),
+                /*
+                profissional: {
+
+                }
+                */
+            },
+        })
+        res.status(200).json(itemservico)
+    } catch(error){
+        if(error instanceof Error){
+            res.status(500).json({msg:error.message})
+        }
+    }
 }
+
+
+
 export const visualizarprofissional = async (req: Request, res:Response) => {
     try {
         const response = await prisma.profissional.findUnique({
