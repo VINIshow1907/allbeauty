@@ -102,8 +102,7 @@ export default function ProMenuSuperior() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={editarprofissional}>Editar Perfil</MenuItem>
-                <MenuItem onClick={homeprofissional}>Visualizar Perfil</MenuItem>
-              </Menu>
+                </Menu>
             </div>
           )}
         </Toolbar>
