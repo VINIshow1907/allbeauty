@@ -15,12 +15,12 @@ export default function Rotas(){
                 <Route path='/' index element={<Home />}/>
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/editarprofissional/:id" element={<EditarProfissional />} />
                 <Route path="/editarprofissional" element={<EditarProfissional />} />
-                <Route path="/homeprofissional" element={<HomeProfissional />} />
                 <Route path="/esqueceusenha" element={<EsqueceuSenha/>} />
                 <Route path="/homeprofissional/:id" element={<HomeProfissional />} />
+                <Route path="/homeprofissional" element={<HomeProfissional />} />
             </Routes>
-
             </BrowserRouter>
 
         </div>
