@@ -198,7 +198,7 @@ export default function FormularioEditarPro() {
                   inputProps={{maxLength:50}}
                 />
               </Grid>
-              
+           
             <Grid item xs={12}>
               <TextField
                 required
