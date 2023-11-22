@@ -54,21 +54,41 @@ export const associarProfissionalServico = async (req:Request, res:Response) => 
     const {idprofissional, idservico} = req.body
 
     try {
+         // Verificar se o profissional existe
+         const profissionalExistente = await prisma.profissional.findUnique({
+            where: { idprofissional: Number(idprofissional) }
+        });
+
+        if (!profissionalExistente) {
+            return res.status(404).json({ msg: 'Profissional não encontrado.' });
+        }
+
+         // Verificar se o serviço existe
+         const servicoExistente = await prisma.servico.findUnique({
+            where: { idservico: Number(idservico) }
+        });
+
+        if (!servicoExistente) {
+            return res.status(404).json({ msg: 'Serviço não encontrado.' });
+        }
+        
         const itemservico = await prisma.itemservico.create({
             data: {
-                idprofissional: Number(idprofissional),
-                idservico: Number(idservico),
-                /*
                 profissional: {
-
+                    connect:{ idprofissional: Number(idprofissional)}
+                },
+                servico: {
+                    connect: { idservico: Number(idservico) }
                 }
-                */
+                
             },
         })
         res.status(200).json(itemservico)
     } catch(error){
         if(error instanceof Error){
             res.status(500).json({msg:error.message})
+        } else {
+            res.status(500).json({ msg: 'Erro desconhecido ao criar itemservico.' });
         }
     }
 }
