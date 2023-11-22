@@ -26,7 +26,10 @@ interface Servico {
 
 export default function Formulario() {
   const navigate = useNavigate();
-
+  const paginaHomeProfissional = () => {
+    navigate("/homeprofissional");
+  
+  }  
   const [profissional, setprofissional] = useState({
     nome: "",
     cpf: "",
@@ -38,11 +41,13 @@ export default function Formulario() {
     descricao: "",
   });
   const [servicosSelecionados, setServicosSelecionados] = useState<{ [key: number]: boolean }>({});
+
   const handleCheckboxChange = (idServico: number) => {
     setServicosSelecionados((prevSelecionados) => ({
       ...prevSelecionados,
       [idServico]: !prevSelecionados[idServico],
     }));
+    console.log(servicosSelecionados)
   };
 
   const [servicos, setservicos] = useState<Servico[]>([])
@@ -81,9 +86,8 @@ export default function Formulario() {
     try {
       // Cadastra o profissional
       const responseProfissional = await axios.post("http://localhost:5000/cadastroprofissional", profissional);
-      const idProfissional = responseProfissional.data.id;
+      const idProfissional = responseProfissional.data.idprofissional;
       console.log("ID do profissional cadastrado:", idProfissional);
-  
       // Cadastra os serviços
       for (const servico of servicos) {
         // verifica quais serviços foram selecionados
@@ -91,16 +95,18 @@ export default function Formulario() {
         await associarProfissionalServico(idProfissional, servico.idservico);
       }
       console.log("Cadastro concluído");
+      paginaHomeProfissional();
+
     } catch (error) {
       console.error(error);
     }
   };
   
-  const associarProfissionalServico = async (idProfissional: number, idServico: number) => {
+  const associarProfissionalServico = async (idprofissional: number, idservico: number) => {
     try {
       const response = await axios.post("http://localhost:5000/associarprofissionalservico", {
-        idProfissional,
-        idServico,
+        idprofissional,
+        idservico,
       });
   
       console.log("Associação concluída:", response.data);
@@ -315,7 +321,7 @@ export default function Formulario() {
             })}
             </Grid>
 
-            <Button
+            <Button  
               type="submit"
               fullWidth
               variant="contained"
