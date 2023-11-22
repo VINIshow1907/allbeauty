@@ -89,9 +89,6 @@ export default function Login() {
           </Button>
           <Grid container>
           <Grid item>
-              <Button onClick={paginaEsqueceusenha}>
-              Esqueceu sua senha?
-              </Button>
             </Grid>
              <Grid sx={{mt:1,mb:1}}item >
               <Button onClick={paginaCadastro}>
