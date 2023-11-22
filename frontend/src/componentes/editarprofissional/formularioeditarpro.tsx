@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Route, Link, useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
@@ -21,6 +21,7 @@ const defaultTheme = createTheme();
 
 export default function FormularioEditarPro() {
   const navigate = useNavigate();
+  const { id } = useParams();
   
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -44,6 +45,7 @@ export default function FormularioEditarPro() {
     cidade: '',
     email: '',
     senha: '',
+    descricao: '',
     servicos: {
       manicure: false,
       pedicure: false,
@@ -57,9 +59,32 @@ export default function FormularioEditarPro() {
   // Use o useEffect para buscar os dados do profissional quando o componente for montado
   React.useEffect(() => {
     // Faça uma solicitação para obter os dados do profissional
-    axios.get('/formulario')
+    axios.get(`http://localhost:5000/visualizarprofissional/${id}`)
       .then(response => {
-        setProfissional(response.data); // Atualize o estado com os dados reais do profissional
+        console.log(response.data)
+        const {
+          cidadeprofissional,
+          estadoprofissional,
+          nomeprofissional,
+          telefoneprofissional,
+          cpfprofissional,
+          emailprofissional,
+          senhaprofissional,
+          descricaoprofissional
+        } = response.data
+
+        setProfissional({
+          ...profissional,
+          cidade: cidadeprofissional,
+          uf: estadoprofissional,
+          nome: nomeprofissional,
+          telefone: telefoneprofissional,
+          cpf: cpfprofissional,
+          email: emailprofissional,
+          senha: senhaprofissional,
+          descricao: descricaoprofissional
+
+        }); // Atualize o estado com os dados reais do profissional
       })
       .catch(error => {
         console.error(error);
@@ -76,6 +101,7 @@ export default function FormularioEditarPro() {
     navigate("/homeprofissional");
   
   }  
+
   
 
   return (
@@ -113,7 +139,9 @@ export default function FormularioEditarPro() {
                   fullWidth
                   id="nomecompleto"
                   label="NOME COMPLETO"
+                  value={profissional.nome}
                   autoFocus
+                  inputProps={{maxLength:40}}
                 />
                 </Grid>
               <br></br>
@@ -125,6 +153,8 @@ export default function FormularioEditarPro() {
                   label="CPF"
                   name="cpf"
                   autoComplete="cpf"
+                  value={profissional.cpf}
+                  inputProps={{maxLength:11}}
                 />
               </Grid>
               <br></br>
@@ -136,7 +166,8 @@ export default function FormularioEditarPro() {
                   label="TELEFONE"
                   name="telefone"
                   autoComplete="telefone"
-                  
+                  value={profissional.telefone}
+                  inputProps={{maxLength:11}}
                 />
               </Grid>
 
@@ -149,6 +180,9 @@ export default function FormularioEditarPro() {
                   label="UF"
                   name="uf"
                   autoComplete="uf"
+                  value={profissional.uf}
+                  inputProps={{maxLength:2}}
+                  
                   
                 />
               </Grid>
@@ -160,7 +194,8 @@ export default function FormularioEditarPro() {
                   label="CIDADE"
                   name="cidade"
                   autoComplete="cidade"
-                  
+                  value={profissional.cidade}
+                  inputProps={{maxLength:50}}
                 />
               </Grid>
               
@@ -172,7 +207,8 @@ export default function FormularioEditarPro() {
                 label="DIGITE SEU EMAIL"
                 name="email"
                 autoComplete="email"
-                
+                value={profissional.email}
+                inputProps={{maxLength:50}}
               />
             </Grid>
             <br></br>
@@ -185,9 +221,22 @@ export default function FormularioEditarPro() {
                 type="password"
                 id="Senha"
                 autoComplete="nova senha"
+                value={profissional.senha}
                 
               />
             </Grid>
+            <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="descricao"
+                  label="DESCRIÇÃO DO SEU SERVIÇO"
+                  name="descricao"
+                  autoComplete="descricao"
+                  value={profissional.descricao}
+                  inputProps={{ maxLength: 200 }}
+                />
+              </Grid>
               <Grid item xs={12} >
           <Typography variant="h6" textAlign={"center"}>
              Serviço Prestado                 

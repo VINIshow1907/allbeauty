@@ -87,14 +87,10 @@ export default function Formulario() {
       // Cadastra os serviços
       for (const servico of servicos) {
         // verifica quais serviços foram selecionados
-        
-
         // Associa o profissional e o serviço na tabela itemservico
         await associarProfissionalServico(idProfissional, servico.idservico);
       }
-  
       console.log("Cadastro concluído");
-  
     } catch (error) {
       console.error(error);
     }
