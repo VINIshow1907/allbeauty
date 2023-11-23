@@ -7,6 +7,7 @@ import Login from "./paginas/login";
 import HomeProfissional from "./paginas/homeprofissional";
 import EsqueceuSenha from "./paginas/esqueceusenha";
 import EditarProfissional from "./paginas/editarprofissional";
+import PerfilProfissional from "./paginas/perfilprofissional";
 export default function Rotas(){
     return (
         <div>
@@ -20,6 +21,8 @@ export default function Rotas(){
                 <Route path="/esqueceusenha" element={<EsqueceuSenha/>} />
                 <Route path="/homeprofissional/:id" element={<HomeProfissional />} />
                 <Route path="/homeprofissional" element={<HomeProfissional />} />
+                <Route path="/perfilprofissional" element={<PerfilProfissional />} />
+                <Route path="/perfilprofissional/:id" element={<PerfilProfissional />} />
             </Routes>
             </BrowserRouter>
 
