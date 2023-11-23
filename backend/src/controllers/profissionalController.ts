@@ -28,7 +28,6 @@ const prisma = new PrismaClient();
 export const cadastroProfissional = async (req:Request, res:Response, next: NextFunction) => {
     console.log('Chegou no backend')
     const { nome, cpf, telefone, email, senha, cidade, estado, descricao } = req.body
-
     try {
         console.log('Recebeu os dados e vai tentar cadastrar')
         const profissional = await prisma.profissional.create({
@@ -111,6 +110,44 @@ export const visualizarprofissional = async (req: Request, res:Response) => {
     }
     }
 
+    export const buscaprofissional = async (req: Request, res:Response) => {
+         const {cidade, estado} = req.query
+      try {
+        console.log('Parâmetros da consulta:', cidade, estado);
+        if (!cidade || !estado) {
+            return res.status(400).json({ msg: 'Os parâmetros cidade e estado são obrigatórios.' });
+          }
+          
+            const response = await prisma.profissional.findMany({
+                where: {
+                    estadoprofissional:  String(estado),
+                    cidadeprofissional:  String(cidade)
+                },
+            })
+            res.status(200).json(response)
+        } catch (error) {
+            if(error instanceof Error){
+                res.status(500).json({msg:error.message})
+            }
+        }
+       }
+
+    export const deletarprofissional = async (req: Request, res:Response) => {
+        try {
+            const response = await prisma.profissional.delete({
+                where: {
+                    idprofissional: Number(req.params.id)
+    
+                },
+            })
+            res.status(200).json(response)
+        } catch (error) {
+            if(error instanceof Error){
+                res.status(500).json({msg:error.message})
+            }
+        }
+        }
+
     export const getProfissionalById = async (req = request, res = response) => {
              try {
                  const response = await prisma.profissional.findUnique({
@@ -127,7 +164,34 @@ export const visualizarprofissional = async (req: Request, res:Response) => {
         }
 
 
-
+export const editarProfissional = async (req = request, res = response) => {
+    const{nome, estado,
+         cidade,cpf,
+          telefone, email,
+           senha, descricao} = req.body
+    try {
+        const profissional = await prisma.profissional.update({
+            where: {
+                idprofissional: Number(req.params.id),    
+            },
+            data: {
+                nomeprofissional: nome,
+                estadoprofissional: estado,
+                cidadeprofissional:cidade,
+                cpfprofissional:cpf,
+                telefoneprofissional:telefone,
+                emailprofissional: email,
+                senhaprofissional: senha,
+                descricaoprofissional:descricao
+            },
+        })
+        res.status(200).json(profissional)
+    } catch(error) {
+        if (error instanceof Error){      
+            res.status(500).json({ msg: error.message})
+           }
+    }
+}
 //        class listarservico
 //        async execute() {
 //        const servico = await prismaClient.servico.findMany({
