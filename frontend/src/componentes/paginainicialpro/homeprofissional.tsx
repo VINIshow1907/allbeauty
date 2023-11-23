@@ -38,6 +38,16 @@ export default function Formulario() {
       cidade: data.get("cidade"),
     });
   };
+const deletarprofissional = () =>{
+  axios.delete(`http://localhost:5000/deletarprofissional/${id}`)
+  .then(response => {
+    console.log(response.data)
+})
+.catch(error => {
+  console.error(error);
+});
+}
+
 
   const [profissional, setprofissional] = useState({
     nome: '',
@@ -369,7 +379,7 @@ const paginaLogin = () => {
             </Grid>
 
             <Button
-            
+            onClick={deletarprofissional}
            
               fullWidth
               variant="contained"
