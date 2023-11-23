@@ -5,10 +5,12 @@ import Rodape from "../componentes/rodape/rodape";
 import { Route, useNavigate, Navigate } from "react-router-dom";
 import Menusuperior from "../componentes/menuhome/menusuperior";
 import axios from "axios";
+import { useState } from "react";
 import { Checkbox, FormControlLabel, Grid, Typography,TextField,Button } from "@mui/material";
 import Carrossel from "../componentes/carrosselhome";
 import "../estilos/fonte.css"; // Importe o arquivo CSS de estilos
 import SearchIcon from '@mui/icons-material/Search';
+import Gridinformacoesprofissional from "../componentes/gridinformacoes";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -16,7 +18,37 @@ export default function Home() {
   const paginaCadastro = () => {
     navigate("/Cadastro");
   }; 
+  const [profissionais, setprofissionais] = useState ([])
 
+  const buscaprofissional  = () =>{
+    axios.get(`http://localhost:5000/buscaprofissional`, {
+      params: {
+        cidade: profissional.cidade,
+        estado: profissional.estado,
+      },
+    } )
+    .then(response => {
+      console.log(response.data)
+      setprofissionais(response.data)
+  })
+  .catch(error => {
+    console.error(error);
+  });
+  }
+  const [profissional, setprofissional] = useState({
+    nome: '',
+    cpf: '',
+    telefone: '',
+    email: '',
+    senha: '',
+    cidade: '',
+    estado: '',
+    descricao:'',
+  });
+  const valueInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setprofissional({ ...profissional, [name]: value });
+  };
   return (
     <Box
       sx={{
@@ -61,8 +93,10 @@ export default function Home() {
                   fullWidth
                   id="uf"
                   label="UF"
-                  name="uf"
+                  name="estado"
                   autoComplete="uf"
+                  value={profissional.estado}
+                  onChange={valueInput}
                 />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
@@ -73,6 +107,8 @@ export default function Home() {
                   label="CIDADE"
                   name="cidade"
                   autoComplete="cidade"
+                  value={profissional.cidade}
+                  onChange={valueInput}
                   />
               </Grid>
               </Grid>
@@ -130,6 +166,7 @@ export default function Home() {
     <br></br>
     <Grid>
       <Button
+              onClick={buscaprofissional}
               type="submit"
               fullWidth
               variant="contained"
@@ -149,6 +186,7 @@ export default function Home() {
             </Button>
             </Grid>
             <p>AQUI EM BAIXO VAI FICAR OS DADOS DOS PROFISSIONAIS QUE ESTÃO NO BANCO DE DADOS ⬇️⬇️⬇️</p>
+            <Gridinformacoesprofissional profissionais={profissionais} />
     <Rodape />
     </Box>
   );
