@@ -3,7 +3,7 @@ import {Router} from "express";
 // import { AuthUserController } from "../src/controllers/user/AuthUserController.js";
 //import { isAuthenticated } from "../src/middleware/isAuthenticated";
 //import { DetailUserController } from "../src/controllers/user/DetailUserController.js";
-import { associarProfissionalServico, cadastroProfissional, editarProfissional, visualizarprofissional, deletarprofissional, buscaprofissional } from "../src/controllers/profissionalController.js";
+import { associarProfissionalServico, cadastroProfissional, editarProfissional, visualizarprofissional, deletarprofissional, buscaprofissional, perfilprofissional } from "../src/controllers/profissionalController.js";
 import { pesquisaServico } from "../src/controllers/servicoController.js";
 
 const router = Router();
@@ -15,6 +15,7 @@ router.get('/visualizarprofissional/:id', visualizarprofissional)
 router.delete('/deletarprofissional/:id', deletarprofissional)
 router.get('/buscaprofissional', buscaprofissional)
 router.put('/editarprofissional/:id', editarProfissional)
+router.get('/perfilprofissional/:id', perfilprofissional)
 router.get('/teste', () => {
     console.log("Servidor recebeu req GET")
 })
