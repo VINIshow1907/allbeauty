@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 const columns: GridColDef[] = [
-    { field: 'idprofissional', headerName: 'ID' },
+  
     { field: 'nomeprofissional', headerName: 'NOME' },
     { field: 'estadoprofissional', headerName: 'ESTADO' },
     { field: 'cidadeprofissional', headerName: 'CIDADE' },
@@ -23,12 +23,11 @@ const columns: GridColDef[] = [
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 5,
+                pageSize: 8,
               },
             },
           }}
           pageSizeOptions={[5]}
-          checkboxSelection
           disableRowSelectionOnClick
         />
       </Box>
