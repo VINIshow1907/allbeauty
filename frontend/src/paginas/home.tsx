@@ -114,55 +114,6 @@ export default function Home() {
               </Grid>
               <br></br>
               <br></br>
-      <Grid container>
-      <Grid item xs={12}>
-        <Typography variant="h6" align="center">
-          Serviço Prestado
-        </Typography>
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="cabeleleiro" id="cabeleleiro" />}
-          label="CABELELEIRO"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="depiladora" id="depiladora" />}
-          label="DEPILADORA"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="designsobrancelha" id="designsobrancelha" />}
-          label="DESIGN SOBRANCELHA"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="manicure" id="manicure" />}
-          label="MANICURE"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="maquiador" id="maquiador" />}
-          label="MAQUIADOR"
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" name="pedicure" id="pedicure" />}
-          label="PEDICURE"
-        />
-      </Grid>
-    </Grid>
     <br></br>
     <Grid>
       <Button
