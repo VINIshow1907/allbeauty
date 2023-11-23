@@ -22,20 +22,6 @@ const defaultTheme = createTheme();
 export default function FormularioEditarPro() {
   const navigate = useNavigate();
   const { id } = useParams();
-  
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      cpf: data.get("cpf"),
-      servico: data.get("servico"),
-      telefone: data.get("telefone"),
-      uf: data.get("uf"),
-      cidade: data.get("cidade"),
-    });
-  };
 
   const [profissional, setProfissional] = React.useState({
     nome: '',
@@ -91,6 +77,11 @@ export default function FormularioEditarPro() {
       });
   }, []); // Certifique-se de passar as dependências corretas, caso contrário, isso pode causar um loop infinito
 
+  const valueInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setProfissional({ ...profissional, [name]: value });
+  };
+
   const paginaLogin = () => {
     navigate("/login");
   };
@@ -99,9 +90,16 @@ export default function FormularioEditarPro() {
   };
   const paginaHomeProfissional = () => {
     navigate("/homeprofissional");
-  
   }  
-
+  const editarprofissional = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(profissional)
+    await axios.put(`http://localhost:5000/editarprofissional/${id}`, profissional)
+     .then(response => {
+      console.log(response)
+     })
+     .catch(erro => console.log(erro))
+}
   
 
   return (
@@ -127,19 +125,20 @@ export default function FormularioEditarPro() {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={editarprofissional}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
+            <Grid container spacing={2} >
               <Grid container item xs={12} sm={6}  >
                 <TextField
                   autoComplete="nome completo"
-                  name="nome completo"
+                  name="nome"
                   required
                   fullWidth
                   id="nomecompleto"
                   label="NOME COMPLETO"
                   value={profissional.nome}
+                  onChange={valueInput}
                   autoFocus
                   inputProps={{maxLength:40}}
                 />
@@ -154,6 +153,7 @@ export default function FormularioEditarPro() {
                   name="cpf"
                   autoComplete="cpf"
                   value={profissional.cpf}
+                  onChange={valueInput}
                   inputProps={{maxLength:11}}
                 />
               </Grid>
@@ -167,6 +167,7 @@ export default function FormularioEditarPro() {
                   name="telefone"
                   autoComplete="telefone"
                   value={profissional.telefone}
+                  onChange={valueInput}
                   inputProps={{maxLength:11}}
                 />
               </Grid>
@@ -181,9 +182,8 @@ export default function FormularioEditarPro() {
                   name="uf"
                   autoComplete="uf"
                   value={profissional.uf}
+                  onChange={valueInput}
                   inputProps={{maxLength:2}}
-                  
-                  
                 />
               </Grid>
               <Grid item xs={12} >
@@ -195,6 +195,7 @@ export default function FormularioEditarPro() {
                   name="cidade"
                   autoComplete="cidade"
                   value={profissional.cidade}
+                  onChange={valueInput}
                   inputProps={{maxLength:50}}
                 />
               </Grid>
@@ -208,6 +209,7 @@ export default function FormularioEditarPro() {
                 name="email"
                 autoComplete="email"
                 value={profissional.email}
+                onChange={valueInput}
                 inputProps={{maxLength:50}}
               />
             </Grid>
@@ -221,6 +223,7 @@ export default function FormularioEditarPro() {
                 type="password"
                 id="Senha"
                 autoComplete="nova senha"
+                onChange={valueInput}
                 value={profissional.senha}
                 
               />
@@ -234,6 +237,7 @@ export default function FormularioEditarPro() {
                   name="descricao"
                   autoComplete="descricao"
                   value={profissional.descricao}
+                  onChange={valueInput}
                   inputProps={{ maxLength: 200 }}
                 />
               </Grid>
@@ -287,7 +291,7 @@ export default function FormularioEditarPro() {
              </Grid>
           </Grid>
 
-            <Button onClick={paginaHomeProfissional}
+            <Button
               type="submit"
               fullWidth
               variant="contained"
@@ -302,7 +306,6 @@ export default function FormularioEditarPro() {
               Editar <ModeEditOutlineIcon />
             </Button>
             <Button onClick={paginaHomeProfissional}
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, 
