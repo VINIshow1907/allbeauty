@@ -97,6 +97,8 @@ export default function Home() {
                   autoComplete="uf"
                   value={profissional.estado}
                   onChange={valueInput}
+                  inputProps={{ maxLength: 2}}
+                  
                 />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
@@ -109,6 +111,7 @@ export default function Home() {
                   autoComplete="cidade"
                   value={profissional.cidade}
                   onChange={valueInput}
+                  inputProps={{ maxLength: 50 }}
                   />
               </Grid>
               </Grid>
@@ -136,7 +139,7 @@ export default function Home() {
               Pesquisar <SearchIcon />
             </Button>
             </Grid>
-            <p>AQUI EM BAIXO VAI FICAR OS DADOS DOS PROFISSIONAIS QUE ESTÃO NO BANCO DE DADOS ⬇️⬇️⬇️</p>
+            <p></p>
             <Gridinformacoesprofissional profissionais={profissionais} />
     <Rodape />
     </Box>
