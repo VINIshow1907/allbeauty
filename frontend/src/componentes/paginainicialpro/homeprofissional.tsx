@@ -143,7 +143,9 @@ const deletarprofissional = () =>{
 const paginaLogin = () => {
     navigate("/login");
   };
-
+const editarprofissional = (idprofissional: any) => 
+{navigate('/editarprofissional')
+}
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
