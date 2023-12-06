@@ -1,10 +1,11 @@
 import * as React from 'react';
+import {Link, Router} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 const columns: GridColDef[] = [
   
-    { field: 'nomeprofissional', headerName: 'NOME' },
+    { field: 'nomeprofissional', headerName: 'NOME' , renderCell: (params) => <Link to={`/perfilprofissional/${params.id}`}>{params.value}</Link> },
     { field: 'estadoprofissional', headerName: 'ESTADO' },
     { field: 'cidadeprofissional', headerName: 'CIDADE' },
     { field: 'descricaoprofissional', headerName: 'DESCRICAO', flex: 1 },
@@ -31,5 +32,6 @@ const columns: GridColDef[] = [
           disableRowSelectionOnClick
         />
       </Box>
+      
     );
   }

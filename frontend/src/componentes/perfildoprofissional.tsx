@@ -1,5 +1,4 @@
 import * as React from "react";
-import  useTheme  from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,18 +9,16 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, useParams } from "react-router-dom";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
-import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import gridinformacoesprofissional from "../componentes/gridinformacoes";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function PerfilProfissional() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string}> ();
 
   const [profissional, setProfissional] = React.useState({
     nome: '',
@@ -95,7 +92,7 @@ export default function PerfilProfissional() {
     // Navegue para a página "home" quando o ícone Home for clicado
     navigate("/");
   };
-  
+
   const editarprofissional = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(profissional)
@@ -125,7 +122,7 @@ export default function PerfilProfissional() {
         >
           <Avatar sx={{ m: 1, bgcolor: "#ad1457" }}></Avatar>
           <Typography component="h1" variant="h5">
-            EDITAR PERFIL 
+             PERFIL DO PROFISSIONAL 
           </Typography>
           <Box
             component="form"
@@ -149,19 +146,7 @@ export default function PerfilProfissional() {
                 />
                 </Grid>
               <br></br>
-              <Grid item xs={12} sm={6}>
-                <TextField  
-                  required
-                  fullWidth
-                  id="cpf"
-                  label="CPF"
-                  name="cpf"
-                  autoComplete="cpf"
-                  value={profissional.cpf}
-                  onChange={valueInput}
-                  inputProps={{maxLength:11}}
-                />
-              </Grid>
+              
               <br></br>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -178,8 +163,7 @@ export default function PerfilProfissional() {
               </Grid>
 
               <Grid item xs={12} sm={6} >
-                <TextField 
-                  
+                <TextField     
                   required
                   fullWidth
                   id="uf"
@@ -191,7 +175,7 @@ export default function PerfilProfissional() {
                   inputProps={{maxLength:2}}
                 />
               </Grid>
-              <Grid item xs={12} >
+              <Grid item xs={12} sm={6} >
                 <TextField
                   required
                   fullWidth
@@ -204,35 +188,6 @@ export default function PerfilProfissional() {
                   inputProps={{maxLength:50}}
                 />
               </Grid>
-           
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="DIGITE SEU EMAIL"
-                name="email"
-                autoComplete="email"
-                value={profissional.email}
-                onChange={valueInput}
-                inputProps={{maxLength:50}}
-              />
-            </Grid>
-            <br></br>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="senha"
-                label="DIGITE SUA SENHA"
-                type="password"
-                id="Senha"
-                autoComplete="nova senha"
-                onChange={valueInput}
-                value={profissional.senha}
-                
-              />
-            </Grid>
             <Grid item xs={12}>
                 <TextField
                   required
@@ -246,54 +201,6 @@ export default function PerfilProfissional() {
                   inputProps={{ maxLength: 200 }}
                 />
               </Grid>
-              <Grid item xs={12} >
-          <Typography variant="h6" textAlign={"center"}>
-             Serviço Prestado                 
-          </Typography>
-          </Grid>
-            <br></br>
-            <Grid item xs={6} sm={4} md={4}>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Manicure"
-                
-              />
-            </Grid>
-            <Grid item xs={6} sm={4} md={4}>
-            <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Pedicure"
-                
-              />
-              </Grid>
-              <Grid item xs={6} sm={4} md={4}>
-            <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Cabeleleiro"
-                
-              />
-              </Grid>
-              <Grid item xs={6} sm={4} md={4}>
-              <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Maquiador"
-               
-              />
-              </Grid>
-              <Grid item xs={6} sm={4} md={4}>
-              <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Design Sobrancelha"
-                
-              />
-             </Grid>
-             
-              <Grid item xs={6} sm={4} md={4}>
-              <FormControlLabel   
-                control={<Checkbox value="remember" color="primary" />}
-                label="Depiladora"  
-              />
-             </Grid>
           </Grid>
 
             <Button  onClick={handleHomeClick}

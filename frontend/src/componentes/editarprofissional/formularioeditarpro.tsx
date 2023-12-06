@@ -76,7 +76,10 @@ export default function FormularioEditarPro() {
         console.error(error);
       });
   }, []); // Certifique-se de passar as dependências corretas, caso contrário, isso pode causar um loop infinito
-
+  const homeprofissional = () => {
+    const idprofissional = 123; // Replace with the actual idprofissional value
+    navigate(`/editarprofissional/${idprofissional}`);
+  };
   const valueInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setProfissional({ ...profissional, [name]: value });

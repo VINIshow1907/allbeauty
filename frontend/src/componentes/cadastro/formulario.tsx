@@ -28,8 +28,7 @@ export default function Formulario() {
   const navigate = useNavigate();
   const paginaHomeProfissional = () => {
     navigate("/homeprofissional");
-  
-  }  
+  }
   const [profissional, setprofissional] = useState({
     nome: "",
     cpf: "",
@@ -95,7 +94,7 @@ export default function Formulario() {
         await associarProfissionalServico(idProfissional, servico.idservico);
       }
       console.log("Cadastro concluído");
-      paginaHomeProfissional();
+      navigate(`/homeprofissional/${idProfissional}`);
 
     } catch (error) {
       console.error(error);

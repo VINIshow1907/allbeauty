@@ -12,14 +12,18 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Home from "../../paginas/home";
+import { useState } from "react";
 //import EditarProfissional from "../paginas/editarprofissional";
 
 export default function ProMenuSuperior() {
+  
   const navigate = useNavigate();
+  const {id} = useParams();
+
   const editarprofissional = () => {
-    navigate("/editarprofissional");
+    navigate("/editarprofissional/${idprofissional}");
   }
   const paginahomeprofissional = () => {
     navigate("/homeprofissional");
@@ -49,9 +53,18 @@ export default function ProMenuSuperior() {
     setAnchorEl(null);
   };
 
+  const [profissional, setprofissional] = useState({
+    nome: "",
+    cpf: "",
+    telefone: "",
+    email: "",
+    senha: "",
+    cidade: "",
+    estado: "",
+    descricao: "",
+  });
   const handleHomeClick = () => {
-    // Navegue para a página "home" quando o ícone Home for clicado
-    navigate("/");
+    navigate(`/editarprofissional/${id}`);
   };
 
   return (
@@ -101,7 +114,8 @@ export default function ProMenuSuperior() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={editarprofissional}>Editar Perfil</MenuItem>
+                <MenuItem onClick={editarprofissional}>Editar Perfil</MenuItem> 
+                
                 </Menu>
             </div>
           )}

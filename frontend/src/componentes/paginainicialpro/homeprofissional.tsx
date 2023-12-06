@@ -146,6 +146,10 @@ const paginaLogin = () => {
 const editarprofissional = (idprofissional: any) => 
 {navigate('/editarprofissional')
 }
+const homeprofissional = () => {
+  const idprofissional = 123; // Replace with the actual idprofissional value
+  navigate(`/homeprofissional/${idprofissional}`);
+};
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
