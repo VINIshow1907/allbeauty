@@ -143,6 +143,7 @@ export default function PerfilProfissional() {
                   onChange={valueInput}
                   autoFocus
                   inputProps={{maxLength:40}}
+                  disabled
                 />
                 </Grid>
               <br></br>
@@ -159,6 +160,7 @@ export default function PerfilProfissional() {
                   value={profissional.telefone}
                   onChange={valueInput}
                   inputProps={{maxLength:11}}
+                  disabled
                 />
               </Grid>
 
@@ -173,6 +175,7 @@ export default function PerfilProfissional() {
                   value={profissional.uf}
                   onChange={valueInput}
                   inputProps={{maxLength:2}}
+                  disabled
                 />
               </Grid>
               <Grid item xs={12} sm={6} >
@@ -186,6 +189,7 @@ export default function PerfilProfissional() {
                   value={profissional.cidade}
                   onChange={valueInput}
                   inputProps={{maxLength:50}}
+                  disabled
                 />
               </Grid>
             <Grid item xs={12}>
@@ -199,6 +203,7 @@ export default function PerfilProfissional() {
                   value={profissional.descricao}
                   onChange={valueInput}
                   inputProps={{ maxLength: 200 }}
+                  disabled
                 />
               </Grid>
           </Grid>
