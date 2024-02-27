@@ -227,6 +227,7 @@ export default function PerfilProfissional() {
         </Box>
       
       </Container>
+      
     </ThemeProvider>
   );
 }
